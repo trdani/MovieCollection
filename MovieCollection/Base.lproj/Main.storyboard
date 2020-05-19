@@ -40,7 +40,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="bottom" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="bUT-6g-8fz">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="bottom" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="bUT-6g-8fz" userLabel="Labels Stack View">
                                 <rect key="frame" x="20" y="190" width="99" height="618"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="year" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xaJ-YG-0gN">
@@ -79,7 +79,7 @@
                                     <constraint firstAttribute="trailing" secondItem="xaJ-YG-0gN" secondAttribute="trailing" id="sW2-Z0-YMV"/>
                                 </constraints>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="kaF-ie-pkr">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="kaF-ie-pkr" userLabel="Movie Stats Stack View">
                                 <rect key="frame" x="134" y="190" width="250" height="618"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2001" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YMw-0k-Xz3">
@@ -266,7 +266,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="udU-JQ-C9a">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="0ii-oZ-XvF"/>
+                                </constraints>
                                 <items>
                                     <navigationItem title="Add Movie" id="cdo-QO-sqZ">
                                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="65X-nJ-MNO">
@@ -282,12 +285,92 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="rBe-Sc-B7z" userLabel="Entry Label Stack View">
+                                <rect key="frame" x="20" y="80" width="109" height="708"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="movie name" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VwC-tI-nNg" userLabel="movie name">
+                                        <rect key="frame" x="0.0" y="0.0" width="109" height="96.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="year" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5t6-68-uan">
+                                        <rect key="frame" x="0.0" y="116.5" width="109" height="96"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="director" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5fC-cp-ai7">
+                                        <rect key="frame" x="0.0" y="232.5" width="109" height="96.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="genre" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hjk-5X-fOv">
+                                        <rect key="frame" x="0.0" y="349" width="109" height="96"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="comments" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mtg-wd-DhU">
+                                        <rect key="frame" x="0.0" y="465" width="109" height="243"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="wcz-fc-OVx" userLabel="Entries Stack View">
+                                <rect key="frame" x="149" y="80" width="225" height="708"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="enter movie name" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rNY-pW-si2">
+                                        <rect key="frame" x="0.0" y="0.0" width="225" height="96.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="continue" smartDashesType="yes" textContentType="name"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="enter year of release" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zfl-zj-mdW">
+                                        <rect key="frame" x="0.0" y="116.5" width="225" height="96"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" keyboardType="numberPad" returnKeyType="continue" smartDashesType="yes" textContentType="name"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="enter director name" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MgK-D4-Irr">
+                                        <rect key="frame" x="0.0" y="232.5" width="225" height="96.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="continue" smartDashesType="yes" textContentType="name"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="enter genre of movie" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="N2d-Ay-eSc">
+                                        <rect key="frame" x="0.0" y="349" width="225" height="96"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="continue" smartDashesType="yes" textContentType="name"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="enter any misc. comments" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yI4-CY-tiy">
+                                        <rect key="frame" x="0.0" y="465" width="225" height="243"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="continue" smartDashesType="yes" textContentType="name"/>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="225" id="ert-Jo-zpe"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="evp-47-cOr" firstAttribute="bottom" secondItem="rBe-Sc-B7z" secondAttribute="bottom" constant="20" id="17N-YR-UMs"/>
+                            <constraint firstItem="wcz-fc-OVx" firstAttribute="top" secondItem="udU-JQ-C9a" secondAttribute="bottom" constant="20" id="2kk-PO-63e"/>
+                            <constraint firstItem="N2d-Ay-eSc" firstAttribute="height" secondItem="hjk-5X-fOv" secondAttribute="height" id="CG1-gt-EPR"/>
+                            <constraint firstItem="evp-47-cOr" firstAttribute="bottom" secondItem="wcz-fc-OVx" secondAttribute="bottom" constant="20" id="IWh-eE-XpW"/>
+                            <constraint firstItem="rNY-pW-si2" firstAttribute="height" secondItem="VwC-tI-nNg" secondAttribute="height" id="VhL-gH-3ao"/>
+                            <constraint firstItem="evp-47-cOr" firstAttribute="trailing" secondItem="wcz-fc-OVx" secondAttribute="trailing" constant="40" id="WaT-SI-XyR"/>
+                            <constraint firstItem="MgK-D4-Irr" firstAttribute="height" secondItem="5fC-cp-ai7" secondAttribute="height" id="Wrv-SN-UFl"/>
                             <constraint firstItem="udU-JQ-C9a" firstAttribute="top" secondItem="evp-47-cOr" secondAttribute="top" id="awN-xh-7Zo"/>
+                            <constraint firstItem="zfl-zj-mdW" firstAttribute="height" secondItem="5t6-68-uan" secondAttribute="height" id="d83-QA-3dW"/>
+                            <constraint firstItem="wcz-fc-OVx" firstAttribute="leading" secondItem="rBe-Sc-B7z" secondAttribute="trailing" constant="20" id="gSd-Wg-tPW"/>
+                            <constraint firstItem="rBe-Sc-B7z" firstAttribute="leading" secondItem="evp-47-cOr" secondAttribute="leading" constant="20" id="lbP-dc-NNt"/>
                             <constraint firstItem="udU-JQ-C9a" firstAttribute="leading" secondItem="evp-47-cOr" secondAttribute="leading" id="mKE-Qx-nHq"/>
                             <constraint firstItem="udU-JQ-C9a" firstAttribute="trailing" secondItem="evp-47-cOr" secondAttribute="trailing" id="tJV-OB-JgO"/>
+                            <constraint firstItem="rBe-Sc-B7z" firstAttribute="top" secondItem="udU-JQ-C9a" secondAttribute="bottom" constant="20" id="uag-zj-dV1"/>
+                            <constraint firstItem="yI4-CY-tiy" firstAttribute="height" secondItem="mtg-wd-DhU" secondAttribute="height" id="vzm-ii-kzj"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="evp-47-cOr"/>
                     </view>
