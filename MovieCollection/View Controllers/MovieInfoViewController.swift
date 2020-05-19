@@ -32,20 +32,16 @@ class MovieInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        // TODO: receive the movieToDisplay parameter and assign values
         print("Made it to the MovieInfo view controller")
-        movieNameLabel.text = " "
-        yearLabel.text = " "
-        directorLabel.text = " "
-        genreLabel.text = " "
+        // have received movie, now will populate the screen with information
+        populateText()
     }
     
     // MARK: - Segue Functions
 
     // Prep for segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // sends movies array to ViewController
+        // sends movies array back to ViewController
         let dest1VC : ViewController = segue.destination as! ViewController
         dest1VC.moviesArray = self.moviesArray
     }
@@ -54,14 +50,9 @@ class MovieInfoViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    func populateText (currentMovieToDisplay: Movie) {
-        print("editing inner text for \(currentMovieToDisplay.name)")
-        
-        // have received the movie to display at this point
-        movieToDisplay = currentMovieToDisplay
-        
-        // PROBLEM SPOT
-        // edit text
+    func populateText () {
+        print("editing inner text for \(movieToDisplay.name)")
+        // edit text of display of movie
         movieNameLabel.text = movieToDisplay.name
         yearLabel.text = "\(String(describing: movieToDisplay.year))"
         directorLabel.text = movieToDisplay.director

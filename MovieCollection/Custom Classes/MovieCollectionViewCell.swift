@@ -13,15 +13,11 @@ class MovieCollectionViewCell: UICollectionViewCell {
     // Movie label in collection view
     @IBOutlet weak var movieLabel: UILabel!
     
+    // links the button that the collection view holds to each cell
+    @IBOutlet weak var movieButton: UIButton!
+    
     // links the movie that the cell is displaying
     var movie:Movie?
-    
-    // links the button that takes you to the movie screen
-    @IBAction func takeToMovieInfo(_ sender: Any) {
-        print ("sending to Movie Info View Controller: \(String(describing: self.movie?.name))")
-        let sendTo: MovieInfoViewController = MovieInfoViewController()
-        sendTo.populateText(currentMovieToDisplay: (self.movie)!)
-    }
     
     // called from ViewController to configure the cell that is being displayed
     func configureCell (movie:Movie) {
@@ -29,6 +25,8 @@ class MovieCollectionViewCell: UICollectionViewCell {
         self.movie = movie
         // set the movie label to the name of the movie in Movie object
         movieLabel.text = movie.name
+        // set the button name to the name of the movie in Movie object
+        movieButton.setTitle(movie.name, for: UIControl.State.normal)
     }
     
     

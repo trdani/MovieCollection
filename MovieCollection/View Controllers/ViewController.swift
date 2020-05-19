@@ -12,9 +12,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 
     @IBOutlet weak var collectionView: UICollectionView!
     
+    
     let model = MovieModel()
     var moviesArray = [Movie]()
-    // TODO: find a way to send the Movie Info View Controller the specific movie you just clicked on
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,9 +38,30 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             dest1VC.moviesArray = self.moviesArray
         }
         //sends movies array to show to MovieInfo
-        if segue.identifier == "MovieInfoSegue" {
+        if segue.identifier == "MovieDisplaySegue" {
+            print ("sending to Movie Info View Controller")
+            // set the sender as a button
+            let senderButton = sender as! UIButton
+            
+            // set the location for segue to MovieInfo
             let dest2VC : MovieInfoViewController = segue.destination as! MovieInfoViewController
+            
+            // send movies array
             dest2VC.moviesArray = self.moviesArray
+            
+            // save the specific movie to display by checking which button was pressed
+            let movieName = senderButton.currentTitle
+            
+            // find the correct cell to send over
+            if let movieToSend = moviesArray.first(where: {$0.name == movieName}) {
+                dest2VC.movieToDisplay = movieToSend
+            }
+            else {
+               // item could not be found
+                print("Movie could not be found")
+                // TODO: send user an alert if the movie is not found
+            }
+            
         }
         
     }
@@ -50,6 +71,10 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         
     }
     
+    // actions to take when any movie button is pressed
+    @IBAction func takeToMovieInfoDisplay(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "MovieDisplaySegue", sender: sender)
+    }
     
     // MARK: - DELEGATE/DATASOURCE Functions
     
@@ -69,13 +94,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         // return cell to be displayed
         return cellForDisplay
     }
-    
-    // TODO: remove useless TO VIEW A MOVIE ARCHIVE (needs to go to movie info view control
-    // Delegate protocol that does something for whichever cell was just tapped
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-    }
-    
 
 }
 

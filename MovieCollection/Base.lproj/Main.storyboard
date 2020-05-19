@@ -172,8 +172,7 @@
                                                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="100" scale="large" weight="ultraLight"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="takeToMovieInfo:" destination="PdT-WY-Inr" eventType="touchUpInside" id="Dkh-XW-zaE"/>
-                                                        <segue destination="p64-zp-K7H" kind="presentation" identifier="MovieInfoSegue" id="zUo-oa-Qfw"/>
+                                                        <action selector="takeToMovieInfoDisplay:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AOJ-RT-fqh"/>
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="120" translatesAutoresizingMaskIntoConstraints="NO" id="E4m-tO-V1X">
@@ -195,6 +194,7 @@
                                         <color key="backgroundColor" red="0.81250272923416722" green="0.83864776824989162" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <size key="customSize" width="170" height="224"/>
                                         <connections>
+                                            <outlet property="movieButton" destination="vD7-8U-yX0" id="OAc-xD-FsH"/>
                                             <outlet property="movieLabel" destination="E4m-tO-V1X" id="Dzd-w3-xh0"/>
                                         </connections>
                                     </collectionViewCell>
@@ -215,6 +215,7 @@
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="Ynt-pY-d0W" id="8Tc-p8-6kx"/>
+                        <segue destination="p64-zp-K7H" kind="presentation" identifier="MovieDisplaySegue" id="pMB-k9-WKJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
