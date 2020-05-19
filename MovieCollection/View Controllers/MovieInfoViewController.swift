@@ -60,6 +60,7 @@ class MovieInfoViewController: UIViewController {
         // have received the movie to display at this point
         movieToDisplay = currentMovieToDisplay
         
+        // PROBLEM SPOT
         // edit text
         movieNameLabel.text = movieToDisplay.name
         yearLabel.text = "\(String(describing: movieToDisplay.year))"
