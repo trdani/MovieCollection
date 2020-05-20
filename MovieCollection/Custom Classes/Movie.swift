@@ -13,4 +13,5 @@ class Movie {
     var year = 0
     var director = ""
     var genre = ""
+    var comments = ""
 }

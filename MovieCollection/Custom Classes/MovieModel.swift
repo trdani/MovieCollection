@@ -26,6 +26,7 @@ class MovieModel  {
             tempMovie.year = 2000 + i
             tempMovie.director = "director name to test width behavior \(i)"
             tempMovie.genre = "genre\(i)"
+            tempMovie.comments = "comments pertaining to the movie and other information"
             
             // add to array
             generatedMovies += [tempMovie]

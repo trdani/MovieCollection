@@ -26,13 +26,14 @@ class MovieInfoViewController: UIViewController {
     @IBOutlet weak var directorLabel: UILabel!
     // genre label
     @IBOutlet weak var genreLabel: UILabel!
+    // comments label
+    @IBOutlet weak var commentsLabel: UILabel!
     
     // MARK: - Functions
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print("Made it to the MovieInfo view controller")
+
         // have received movie, now will populate the screen with information
         populateText()
     }
@@ -51,15 +52,12 @@ class MovieInfoViewController: UIViewController {
     }
     
     func populateText () {
-        print("editing inner text for \(movieToDisplay.name)")
         // edit text of display of movie
         movieNameLabel.text = movieToDisplay.name
         yearLabel.text = "\(String(describing: movieToDisplay.year))"
         directorLabel.text = movieToDisplay.director
         genreLabel.text = movieToDisplay.genre
+        commentsLabel.text = movieToDisplay.comments
     }
-    
-    
-    
 
 }
