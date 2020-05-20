@@ -286,7 +286,7 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="rBe-Sc-B7z" userLabel="Entry Label Stack View">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="rBe-Sc-B7z" userLabel="Entry Label Stack View">
                                 <rect key="frame" x="20" y="80" width="109" height="708"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="movie name" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VwC-tI-nNg" userLabel="movie name">
@@ -327,29 +327,41 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="wcz-fc-OVx" userLabel="Entries Stack View">
                                 <rect key="frame" x="149" y="80" width="225" height="708"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="enter movie name" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rNY-pW-si2">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bouncesZoom="NO" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="WIm-iT-f0a">
                                         <rect key="frame" x="0.0" y="0.0" width="225" height="125.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="next" smartDashesType="yes" textContentType="name"/>
-                                    </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="enter year of release" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zfl-zj-mdW">
+                                        <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
+                                        <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                    </textView>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bouncesZoom="NO" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="UlX-Qo-FUC">
                                         <rect key="frame" x="0.0" y="145.5" width="225" height="125.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" keyboardType="numberPad" returnKeyType="next" smartDashesType="yes" textContentType="name"/>
-                                    </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="enter director name" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MgK-D4-Irr">
+                                        <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="numberPad" returnKeyType="done"/>
+                                        <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                    </textView>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bouncesZoom="NO" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="zeH-km-eZA">
                                         <rect key="frame" x="0.0" y="291" width="225" height="126"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="next" smartDashesType="yes" textContentType="name"/>
-                                    </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="enter genre of movie" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="N2d-Ay-eSc">
+                                        <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
+                                        <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                    </textView>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bouncesZoom="NO" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="7dE-Au-5pn">
                                         <rect key="frame" x="0.0" y="437" width="225" height="125.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="next" smartDashesType="yes" textContentType="name"/>
-                                    </textField>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bouncesZoom="NO" keyboardDismissMode="onDrag" text="Thoughts on movie:" translatesAutoresizingMaskIntoConstraints="NO" id="gtF-Qa-piF">
+                                        <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
+                                        <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                    </textView>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bouncesZoom="NO" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="gtF-Qa-piF">
                                         <rect key="frame" x="0.0" y="582.5" width="225" height="125.5"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
@@ -357,14 +369,18 @@
                                     </textView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="gtF-Qa-piF" firstAttribute="top" secondItem="N2d-Ay-eSc" secondAttribute="bottom" constant="20" id="2VW-pf-avW"/>
+                                    <constraint firstItem="WIm-iT-f0a" firstAttribute="leading" secondItem="wcz-fc-OVx" secondAttribute="leading" id="008-kx-vhU"/>
+                                    <constraint firstItem="zeH-km-eZA" firstAttribute="leading" secondItem="wcz-fc-OVx" secondAttribute="leading" id="9Tq-ef-eIF"/>
                                     <constraint firstAttribute="bottom" secondItem="gtF-Qa-piF" secondAttribute="bottom" id="Bw4-0c-0k6"/>
-                                    <constraint firstAttribute="trailing" secondItem="rNY-pW-si2" secondAttribute="trailing" id="CzD-o7-P0Q"/>
-                                    <constraint firstItem="zfl-zj-mdW" firstAttribute="leading" secondItem="wcz-fc-OVx" secondAttribute="leading" id="Sns-Jj-G2D"/>
-                                    <constraint firstAttribute="trailing" secondItem="zfl-zj-mdW" secondAttribute="trailing" id="Zih-lx-1Cd"/>
-                                    <constraint firstItem="rNY-pW-si2" firstAttribute="leading" secondItem="wcz-fc-OVx" secondAttribute="leading" id="b6H-go-qfu"/>
-                                    <constraint firstItem="rNY-pW-si2" firstAttribute="top" secondItem="wcz-fc-OVx" secondAttribute="top" id="bsY-5p-fSH"/>
+                                    <constraint firstAttribute="trailing" secondItem="UlX-Qo-FUC" secondAttribute="trailing" id="HNh-z7-ZFW"/>
+                                    <constraint firstAttribute="trailing" secondItem="7dE-Au-5pn" secondAttribute="trailing" id="OIm-uV-oAK"/>
+                                    <constraint firstItem="UlX-Qo-FUC" firstAttribute="leading" secondItem="wcz-fc-OVx" secondAttribute="leading" id="Ro2-L8-3GS"/>
+                                    <constraint firstItem="7dE-Au-5pn" firstAttribute="leading" secondItem="wcz-fc-OVx" secondAttribute="leading" id="Tgq-Hb-eZp"/>
+                                    <constraint firstAttribute="trailing" secondItem="zeH-km-eZA" secondAttribute="trailing" id="Wya-wU-pBs"/>
+                                    <constraint firstAttribute="trailing" secondItem="gtF-Qa-piF" secondAttribute="trailing" id="d43-bE-bkU"/>
+                                    <constraint firstAttribute="trailing" secondItem="WIm-iT-f0a" secondAttribute="trailing" id="doA-Oo-Zw3"/>
                                     <constraint firstAttribute="width" constant="225" id="ert-Jo-zpe"/>
+                                    <constraint firstItem="gtF-Qa-piF" firstAttribute="leading" secondItem="wcz-fc-OVx" secondAttribute="leading" id="tBA-PF-T7v"/>
                                 </constraints>
                             </stackView>
                         </subviews>
@@ -372,13 +388,9 @@
                         <constraints>
                             <constraint firstItem="evp-47-cOr" firstAttribute="bottom" secondItem="rBe-Sc-B7z" secondAttribute="bottom" constant="20" id="17N-YR-UMs"/>
                             <constraint firstItem="wcz-fc-OVx" firstAttribute="top" secondItem="udU-JQ-C9a" secondAttribute="bottom" constant="20" id="2kk-PO-63e"/>
-                            <constraint firstItem="N2d-Ay-eSc" firstAttribute="height" secondItem="hjk-5X-fOv" secondAttribute="height" id="CG1-gt-EPR"/>
                             <constraint firstItem="evp-47-cOr" firstAttribute="bottom" secondItem="wcz-fc-OVx" secondAttribute="bottom" constant="20" id="IWh-eE-XpW"/>
-                            <constraint firstItem="rNY-pW-si2" firstAttribute="height" secondItem="VwC-tI-nNg" secondAttribute="height" id="VhL-gH-3ao"/>
                             <constraint firstItem="evp-47-cOr" firstAttribute="trailing" secondItem="wcz-fc-OVx" secondAttribute="trailing" constant="40" id="WaT-SI-XyR"/>
-                            <constraint firstItem="MgK-D4-Irr" firstAttribute="height" secondItem="5fC-cp-ai7" secondAttribute="height" id="Wrv-SN-UFl"/>
                             <constraint firstItem="udU-JQ-C9a" firstAttribute="top" secondItem="evp-47-cOr" secondAttribute="top" id="awN-xh-7Zo"/>
-                            <constraint firstItem="zfl-zj-mdW" firstAttribute="height" secondItem="5t6-68-uan" secondAttribute="height" id="d83-QA-3dW"/>
                             <constraint firstItem="wcz-fc-OVx" firstAttribute="leading" secondItem="rBe-Sc-B7z" secondAttribute="trailing" constant="20" id="gSd-Wg-tPW"/>
                             <constraint firstItem="rBe-Sc-B7z" firstAttribute="leading" secondItem="evp-47-cOr" secondAttribute="leading" constant="20" id="lbP-dc-NNt"/>
                             <constraint firstItem="udU-JQ-C9a" firstAttribute="leading" secondItem="evp-47-cOr" secondAttribute="leading" id="mKE-Qx-nHq"/>
@@ -401,10 +413,10 @@
                     </navigationItem>
                     <connections>
                         <outlet property="commentsField" destination="gtF-Qa-piF" id="6n5-os-1oa"/>
-                        <outlet property="directorField" destination="MgK-D4-Irr" id="1mP-lV-82h"/>
-                        <outlet property="genreField" destination="N2d-Ay-eSc" id="Fif-kd-zP9"/>
-                        <outlet property="movieNameField" destination="rNY-pW-si2" id="iA2-Gw-hp5"/>
-                        <outlet property="yearField" destination="zfl-zj-mdW" id="fNH-wc-ZnQ"/>
+                        <outlet property="directorField" destination="zeH-km-eZA" id="Dgx-0j-wsR"/>
+                        <outlet property="genreField" destination="7dE-Au-5pn" id="ZQM-64-RFC"/>
+                        <outlet property="movieNameField" destination="WIm-iT-f0a" id="QH9-Lt-Tf9"/>
+                        <outlet property="yearField" destination="UlX-Qo-FUC" id="2Ur-or-FjR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IQ8-OC-ceC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

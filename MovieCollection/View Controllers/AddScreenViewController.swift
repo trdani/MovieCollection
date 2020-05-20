@@ -13,15 +13,15 @@ class AddScreenViewController: UIViewController, UITextFieldDelegate, UITextView
     // stores movies array
     var moviesArray = [Movie]()
     
+    // TODO: make into TextView objects
     // text field outlets
-    @IBOutlet weak var movieNameField: UITextField!
+    @IBOutlet weak var movieNameField: UITextView!
     
-    @IBOutlet weak var yearField: UITextField!
+    @IBOutlet weak var yearField: UITextView!
     
-    @IBOutlet weak var directorField: UITextField!
+    @IBOutlet weak var directorField: UITextView!
     
-    // TODO: make genre an optional scroll field
-    @IBOutlet weak var genreField: UITextField!
+    @IBOutlet weak var genreField: UITextView!
     
     @IBOutlet weak var commentsField: UITextView!
     
@@ -37,6 +37,9 @@ class AddScreenViewController: UIViewController, UITextFieldDelegate, UITextView
         genreField.delegate = self
         commentsField.delegate = self
         
+        // add borders to the text boxes
+        addBorders()
+        
         // allow tapping off the keyboard anywhere on the screen and removing the keyboard
         let tapRecogniser = UITapGestureRecognizer()
         tapRecogniser.addTarget(self, action: #selector(self.viewTapped))
@@ -48,7 +51,6 @@ class AddScreenViewController: UIViewController, UITextFieldDelegate, UITextView
     @objc func viewTapped(){
        self.view.endEditing(true)
     }
-    
 
     // MARK: - Segue Functions
 
@@ -66,28 +68,15 @@ class AddScreenViewController: UIViewController, UITextFieldDelegate, UITextView
     }
     
     // MARK: - Save user data and dismiss popup function
-
+    // TODO: figure out how to add movies to moviesArray and display to ViewController
     // sends back to ViewController WITH SAVED MOVIE
     @IBAction func saveMovie(_ sender: Any) {
-        // TODO: save movie by accessing data source in MovieModel
+        // save movie by accessing data source in MovieModel
         saveMovieData()
         // dismiss
         dismiss(animated: true, completion: nil)
     }
     
-    func saveMovieData() {
-        
-        // populate dummy movie object
-        let tempMovie = Movie()
-        tempMovie.name = movieNameField.text ?? "no movie entered"
-        tempMovie.year = Int(yearField.text ?? "0") ?? 0
-        tempMovie.director = directorField.text ?? "no director entered"
-        tempMovie.genre = genreField.text ?? "no genre entered"
-        tempMovie.comments = commentsField.text ?? "no comments"
-        
-        // add movie to array of movies
-        moviesArray += [tempMovie]
-    }
     
     // MARK: - Delegate functions
     
@@ -110,6 +99,40 @@ class AddScreenViewController: UIViewController, UITextFieldDelegate, UITextView
         }
         return true
     }
+    
+    // MARK: - Helper functions
+    
+    // add borders to the TextView objects on the screen
+    func addBorders() {
+        addIndivBorders(self.movieNameField)
+        addIndivBorders(self.yearField)
+        addIndivBorders(self.directorField)
+        addIndivBorders(self.genreField)
+        addIndivBorders(self.commentsField)
+    }
+    
+    func addIndivBorders(_ textView: UITextView) {
+        textView.layer.borderColor = UIColor.lightGray.cgColor
+        textView.layer.borderWidth = 1
+        textView.layer.cornerRadius = 3
+    }
+    
+    // saves the movie that was just added to the moviesArray inside the MovieModel
+    func saveMovieData() {
+        
+        // populate dummy movie object
+        let tempMovie = Movie()
+        tempMovie.name = movieNameField.text ?? "no movie entered"
+        tempMovie.year = Int(yearField.text ?? "0") ?? 0
+        tempMovie.director = directorField.text ?? "no director entered"
+        tempMovie.genre = genreField.text ?? "no genre entered"
+        tempMovie.comments = commentsField.text ?? "no comments"
+        
+        // add movie to array of movies
+        moviesArray += [tempMovie]
+    }
+    
+    
     
 
 }
