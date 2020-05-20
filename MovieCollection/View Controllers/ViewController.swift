@@ -12,15 +12,12 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 
     @IBOutlet weak var collectionView: UICollectionView!
     
-    
-    let model = MovieModel()
-    var moviesArray = [Movie]()
+    var model = MovieModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        // TODO: figure out which is prioritized- segue instructions or viewDidLoad (segue prioritized!!!!!!!!!)
-        moviesArray = model.getMovies()
+        // at first app start, update all the movies
+        model.updateMoviesArray()
         
         // set the view controller as the data source/delegate for the collection view
         collectionView.dataSource = self
@@ -35,7 +32,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         if segue.identifier == "AddSegue" {
             print ("sending to Add Movie View Controller")
             let dest1VC : AddScreenViewController = segue.destination as! AddScreenViewController
-            dest1VC.moviesArray = self.moviesArray
+            dest1VC.model = self.model
         }
         //sends movies array to show to MovieInfo
         if segue.identifier == "MovieDisplaySegue" {
@@ -47,13 +44,13 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             let dest2VC : MovieInfoViewController = segue.destination as! MovieInfoViewController
             
             // send movies array
-            dest2VC.moviesArray = self.moviesArray
+            dest2VC.model = self.model
             
             // save the specific movie to display by checking which button was pressed
             let movieName = senderButton.currentTitle
             
             // find the correct cell to send over
-            if let movieToSend = moviesArray.first(where: {$0.name == movieName}) {
+            if let movieToSend = model.moviesArray.first(where: {$0.name == movieName}) {
                 dest2VC.movieToDisplay = movieToSend
             }
             else {
@@ -61,8 +58,13 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                 print("Movie could not be found")
                 // TODO: send user an alert if the movie is not found
             }
-            
         }
+        
+    }
+    
+    // unwind from adding a movie
+    @IBAction func unwindToMainView(segue: UIStoryboardSegue) {
+        
         
     }
     
@@ -81,7 +83,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     // DATASOURCE PROTOCOL: returns the number of items in the collection view
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // returns the number of movies we want to display
-        return moviesArray.count
+        print ("There are \(model.moviesArray.count) movies in the array.")
+        return model.moviesArray.count
     }
     
     // DATASOURCE PROTOCOL: returns which cell should be displayed for a specific location in the collection view
@@ -89,7 +92,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         // get a cell
         let cellForDisplay = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath) as! MovieCollectionViewCell
         // configure cell
-        cellForDisplay.configureCell(movie: moviesArray[indexPath.row])
+        cellForDisplay.configureCell(movie: model.moviesArray[indexPath.row])
         
         // return cell to be displayed
         return cellForDisplay

@@ -11,7 +11,7 @@ import UIKit
 class AddScreenViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
 
     // stores movies array
-    var moviesArray = [Movie]()
+    var model = MovieModel()
     
     // TODO: make into TextView objects
     // text field outlets
@@ -58,7 +58,13 @@ class AddScreenViewController: UIViewController, UITextFieldDelegate, UITextView
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // sends movies array to ViewController
         let dest1VC : ViewController = segue.destination as! ViewController
-        dest1VC.moviesArray = self.moviesArray
+        dest1VC.model = self.model // pass the model back and forth
+        // refresh with the new movie in mind
+        let indexPath = IndexPath(item: model.moviesArray.count-1, section: 0)
+        dest1VC.collectionView.insertItems(at: [indexPath])
+        print ("here is the movie we just added: \(dest1VC.model.moviesArray[dest1VC.model.moviesArray.count-1].name)")
+        dest1VC.collectionView.reloadData()
+        
     }
     
     // sends back to ViewController WITHOUT saving a movie
@@ -129,7 +135,7 @@ class AddScreenViewController: UIViewController, UITextFieldDelegate, UITextView
         tempMovie.comments = commentsField.text ?? "no comments"
         
         // add movie to array of movies
-        moviesArray += [tempMovie]
+        model.addMovie(movie: tempMovie)
     }
     
     

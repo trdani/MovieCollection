@@ -9,10 +9,15 @@
 import Foundation
 
 class MovieModel  {
+    // store all movies in this array
+    var moviesArray = [Movie]()
+    
+    // tracks number of times the model has been accessed
+    var accessCount = 1
     
     // gets the movies from the database or data source and adds them to a movie array
     // INITIAL display of movies
-    func getMovies() -> [Movie] {
+    func getMoviesAtAppStart() -> [Movie] {
         // declare an empty dictionary to store all movies
         var generatedMovies = [Movie]()
         
@@ -37,6 +42,21 @@ class MovieModel  {
     
         //return the array of Movies
         return generatedMovies
+    }
+    
+    func addMovie (movie: Movie) {
+        moviesArray += [movie]
+        print("New movie added")
+    }
+    
+    func updateMoviesArray () {
+        // if this is the first time accessing the model (at app start)
+        if accessCount == 1 {
+            // populate initially with data from data source
+            moviesArray = getMoviesAtAppStart()
+        }
+        // increment accessCount
+        accessCount += 1
     }
     
 }
