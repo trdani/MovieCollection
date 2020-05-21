@@ -16,7 +16,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // at first app start, update all the movies
+        // at first app start, update all the movies based on the csv file
         model.updateMoviesArray()
         
         // set the view controller as the data source/delegate for the collection view
@@ -89,9 +89,10 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     // "unwind" from deleting a movie record
     @IBAction func unwindAfterDeletingMovie(segue: UIStoryboardSegue) {
         let sourceVC : MovieInfoViewController = segue.source as! MovieInfoViewController
+        // TODO: add alert about delete to verify that this is what they want to do
         // delete the movie record
         sourceVC.deleteMovieData()
-        self.model = sourceVC.model // pass the model back
+        self.model = sourceVC.model // pass the model back after deleting
         
         // refresh collectionView with deleted movie in mind
         let indexPath = IndexPath(item: model.indexToDelete, section: 0)
@@ -125,5 +126,23 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         
         // return cell to be displayed
         return cellForDisplay
+    }
+    
+    // MARK: - Alert functions (to be implemented)
+    
+    func showDeleteAlert (sourceVC: MovieInfoViewController) {
+        //create alert
+        let alert = UIAlertController(title: "Delete", message: "Are you sure you want to delete this movie record?", preferredStyle: .alert)
+        
+        // create Cancel and Delete buttons for alert
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        let deleteAction = UIAlertAction(title: "Delete", style: .default) { (deleteAction) in
+
+        }
+        alert.addAction(cancelAction)
+        alert.addAction(deleteAction)
+        
+        // show the alert
+        present(alert, animated: true, completion: nil)
     }
 }
