@@ -15,6 +15,9 @@ class MovieModel  {
     // tracks number of times the model has been accessed
     var accessCount = 1
     
+    // stores the index of the thing you're trying to delete at a certain time
+    var indexToDelete = 0
+    
     // gets the movies from the database or data source and adds them to a movie array
     // INITIAL display of movies
     func getMoviesAtAppStart() -> [Movie] {
@@ -47,6 +50,11 @@ class MovieModel  {
     func addMovie (movie: Movie) {
         moviesArray += [movie]
         print("New movie added")
+    }
+    
+    func removeMovie (movie: Movie) {
+        indexToDelete = moviesArray.firstIndex(where: {$0.name == movie.name})!
+        moviesArray.remove(at: indexToDelete)
     }
     
     func updateMoviesArray () {

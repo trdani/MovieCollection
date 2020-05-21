@@ -58,5 +58,12 @@ class MovieInfoViewController: UIViewController {
         genreLabel.text = movieToDisplay.genre
         commentsLabel.text = movieToDisplay.comments
     }
+    
+    // MARK: - Helper Functions
+    
+    // delete a record
+    func deleteMovieData () {
+        model.removeMovie(movie: self.movieToDisplay)
+    }
 
 }

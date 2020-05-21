@@ -74,9 +74,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         let sourceVC : AddScreenViewController = segue.source as! AddScreenViewController
         // save data after clicking save
         sourceVC.saveMovieData()
-        self.model = sourceVC.model // pass the model back and forth
+        self.model = sourceVC.model // pass the model back
         
-        // refresh with the new movie in mind PROBLEM SPOT
+        // refresh collectionView with the new movie in mind
         let indexPath = IndexPath(item: model.moviesArray.count-1, section: 0)
         collectionView.numberOfItems(inSection: 0) //dummy line to avoid known Swift bug
         // update collectionView
@@ -84,6 +84,22 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             collectionView.insertItems(at: [indexPath])
         }, completion: nil)
         // print("UNIWIND COMPLETE")
+    }
+    
+    // "unwind" from deleting a movie record
+    @IBAction func unwindAfterDeletingMovie(segue: UIStoryboardSegue) {
+        let sourceVC : MovieInfoViewController = segue.source as! MovieInfoViewController
+        // delete the movie record
+        sourceVC.deleteMovieData()
+        self.model = sourceVC.model // pass the model back
+        
+        // refresh collectionView with deleted movie in mind
+        let indexPath = IndexPath(item: model.indexToDelete, section: 0)
+        collectionView.numberOfItems(inSection: 0) // dummy line
+        collectionView.performBatchUpdates({
+            collectionView.deleteItems(at: [indexPath])
+        }, completion: nil)
+        print("Delete complete")
     }
     
     // TODO: remove useless- BUTTON TO ADD NEW MOVIE (send to AddScreen view)
@@ -96,7 +112,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     // DATASOURCE PROTOCOL: returns the number of items in the collection view
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // returns the number of movies we want to display
-        print ("There are \(model.moviesArray.count) movies in the array.")
+        //print ("There are \(model.moviesArray.count) movies in the array.")
         return model.moviesArray.count
     }
     

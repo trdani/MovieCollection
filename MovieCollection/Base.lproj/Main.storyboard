@@ -23,6 +23,12 @@
                                 </constraints>
                                 <items>
                                     <navigationItem title="View Movie" id="W9H-oh-w2S">
+                                        <barButtonItem key="leftBarButtonItem" title="Delete" id="DBE-zm-Hvy">
+                                            <color key="tintColor" red="0.85409245466321249" green="0.039753766977930295" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <connections>
+                                                <segue destination="x59-1i-EXl" kind="unwind" unwindAction="unwindAfterDeletingMovieWithSegue:" id="9Ck-zv-m9v"/>
+                                            </connections>
+                                        </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="gVm-pg-Mqv">
                                             <connections>
                                                 <action selector="doneViewingMovie:" destination="p64-zp-K7H" id="QrF-Eq-ogS"/>
@@ -31,8 +37,8 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Name" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" translatesAutoresizingMaskIntoConstraints="NO" id="nGL-h3-eHv">
-                                <rect key="frame" x="30" y="80" width="364" height="100"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="nGL-h3-eHv">
+                                <rect key="frame" x="30" y="80" width="354" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="DJ5-CQ-pPV"/>
                                 </constraints>
@@ -40,29 +46,29 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="bottom" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="bUT-6g-8fz" userLabel="Labels Stack View">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="bottom" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="bUT-6g-8fz" userLabel="Labels Stack View">
                                 <rect key="frame" x="20" y="190" width="99" height="598"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="year" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xaJ-YG-0gN">
-                                        <rect key="frame" x="0.0" y="0.0" width="99" height="86.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="99" height="134.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="director" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QOs-bS-t0H">
-                                        <rect key="frame" x="0.0" y="106.5" width="99" height="86"/>
+                                        <rect key="frame" x="0.0" y="154.5" width="99" height="134.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="genre" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dJO-XU-y6B">
-                                        <rect key="frame" x="0.0" y="212.5" width="99" height="86.5"/>
+                                        <rect key="frame" x="0.0" y="309" width="99" height="134.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="comments" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ue3-AW-UU2">
-                                        <rect key="frame" x="0.0" y="319" width="99" height="279"/>
+                                        <rect key="frame" x="0.0" y="463.5" width="99" height="134.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -79,29 +85,29 @@
                                     <constraint firstAttribute="trailing" secondItem="xaJ-YG-0gN" secondAttribute="trailing" id="sW2-Z0-YMV"/>
                                 </constraints>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="kaF-ie-pkr" userLabel="Movie Stats Stack View">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="kaF-ie-pkr" userLabel="Movie Stats Stack View">
                                 <rect key="frame" x="134" y="190" width="250" height="598"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2001" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YMw-0k-Xz3">
-                                        <rect key="frame" x="0.0" y="0.0" width="250" height="86.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="250" height="134.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="trisha dani" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FHo-rg-IPe">
-                                        <rect key="frame" x="0.0" y="106.5" width="250" height="86"/>
+                                        <rect key="frame" x="0.0" y="154.5" width="250" height="134.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="science fiction" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PiY-pi-9IX">
-                                        <rect key="frame" x="0.0" y="212.5" width="250" height="86.5"/>
+                                        <rect key="frame" x="0.0" y="309" width="250" height="134.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="enter any comments about the movie" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zJx-jS-yJb">
-                                        <rect key="frame" x="0.0" y="319" width="250" height="279"/>
+                                        <rect key="frame" x="0.0" y="463.5" width="250" height="134.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -126,15 +132,11 @@
                             <constraint firstItem="6Ge-6v-PO6" firstAttribute="leading" secondItem="xgu-R1-wVx" secondAttribute="leading" id="6hl-m6-JLv"/>
                             <constraint firstItem="xgu-R1-wVx" firstAttribute="bottom" secondItem="bUT-6g-8fz" secondAttribute="bottom" constant="20" id="8ac-SH-1eO"/>
                             <constraint firstItem="nGL-h3-eHv" firstAttribute="leading" secondItem="xgu-R1-wVx" secondAttribute="leading" constant="30" id="8xG-yp-mW3"/>
-                            <constraint firstItem="FHo-rg-IPe" firstAttribute="height" secondItem="QOs-bS-t0H" secondAttribute="height" id="D3a-bv-8XS"/>
                             <constraint firstItem="bUT-6g-8fz" firstAttribute="top" secondItem="nGL-h3-eHv" secondAttribute="bottom" constant="10" id="Dbh-Iq-RLV"/>
-                            <constraint firstItem="zJx-jS-yJb" firstAttribute="height" secondItem="Ue3-AW-UU2" secondAttribute="height" id="EqE-hg-hoS"/>
                             <constraint firstItem="nGL-h3-eHv" firstAttribute="top" secondItem="6Ge-6v-PO6" secondAttribute="bottom" constant="20" id="GIg-TM-fZZ"/>
                             <constraint firstItem="kaF-ie-pkr" firstAttribute="height" secondItem="bUT-6g-8fz" secondAttribute="height" id="N8j-KQ-0G9"/>
                             <constraint firstItem="xgu-R1-wVx" firstAttribute="trailing" secondItem="kaF-ie-pkr" secondAttribute="trailing" constant="30" id="NWt-z4-oaS"/>
-                            <constraint firstItem="xgu-R1-wVx" firstAttribute="trailing" secondItem="nGL-h3-eHv" secondAttribute="trailing" constant="20" id="R39-oP-uhH"/>
-                            <constraint firstItem="PiY-pi-9IX" firstAttribute="height" secondItem="dJO-XU-y6B" secondAttribute="height" id="UvG-rc-0SX"/>
-                            <constraint firstItem="YMw-0k-Xz3" firstAttribute="height" secondItem="xaJ-YG-0gN" secondAttribute="height" id="cHG-hh-tSd"/>
+                            <constraint firstItem="xgu-R1-wVx" firstAttribute="trailing" secondItem="nGL-h3-eHv" secondAttribute="trailing" constant="30" id="R39-oP-uhH"/>
                             <constraint firstItem="kaF-ie-pkr" firstAttribute="leading" secondItem="bUT-6g-8fz" secondAttribute="trailing" constant="15" id="dwU-Vj-9cZ"/>
                             <constraint firstItem="6Ge-6v-PO6" firstAttribute="trailing" secondItem="xgu-R1-wVx" secondAttribute="trailing" id="fOC-VI-7t6"/>
                             <constraint firstItem="bUT-6g-8fz" firstAttribute="leading" secondItem="xgu-R1-wVx" secondAttribute="leading" constant="20" id="hrr-Lz-Kac"/>
@@ -156,6 +158,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pEt-BM-iNe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="x59-1i-EXl" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="24.637681159420293" y="229.6875"/>
         </scene>
@@ -204,6 +207,7 @@
                                                         <constraint firstAttribute="width" constant="170" id="PJU-Td-bYc"/>
                                                         <constraint firstAttribute="height" constant="224" id="WTF-hE-ZSz"/>
                                                     </constraints>
+                                                    <color key="tintColor" red="0.27026645800936011" green="0.29195149531853726" blue="0.31507605054455945" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <state key="normal" image="play.rectangle" catalog="system">
                                                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="100" scale="large" weight="ultraLight"/>
                                                     </state>
@@ -211,11 +215,14 @@
                                                         <action selector="takeToMovieInfoDisplay:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AOJ-RT-fqh"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Name" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" preferredMaxLayoutWidth="120" translatesAutoresizingMaskIntoConstraints="NO" id="E4m-tO-V1X">
-                                                    <rect key="frame" x="27" y="100" width="116" height="24"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Name" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" preferredMaxLayoutWidth="120" translatesAutoresizingMaskIntoConstraints="NO" id="E4m-tO-V1X">
+                                                    <rect key="frame" x="25" y="62" width="120" height="100"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="100" id="2wm-NH-LDW"/>
+                                                        <constraint firstAttribute="width" constant="120" id="PWG-bT-uMU"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
+                                                    <color key="textColor" red="1" green="0.621846444" blue="0.57571075660000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
@@ -227,7 +234,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="vD7-8U-yX0" secondAttribute="bottom" id="nfm-cj-wtK"/>
                                             </constraints>
                                         </collectionViewCellContentView>
-                                        <color key="backgroundColor" red="0.81250272923416722" green="0.83864776824989162" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                         <size key="customSize" width="170" height="224"/>
                                         <connections>
                                             <outlet property="movieButton" destination="vD7-8U-yX0" id="OAc-xD-FsH"/>
@@ -332,15 +339,15 @@
                                         <rect key="frame" x="0.0" y="0.0" width="225" height="125.5"/>
                                         <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                         <dataDetectorType key="dataDetectorTypes" link="YES"/>
                                     </textView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bouncesZoom="NO" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="UlX-Qo-FUC">
                                         <rect key="frame" x="0.0" y="145.5" width="225" height="125.5"/>
                                         <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="numberPad" returnKeyType="done"/>
                                         <dataDetectorType key="dataDetectorTypes" link="YES"/>
                                     </textView>
@@ -348,7 +355,7 @@
                                         <rect key="frame" x="0.0" y="291" width="225" height="126"/>
                                         <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
                                         <dataDetectorType key="dataDetectorTypes" link="YES"/>
                                     </textView>
@@ -356,7 +363,7 @@
                                         <rect key="frame" x="0.0" y="437" width="225" height="125.5"/>
                                         <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
                                         <dataDetectorType key="dataDetectorTypes" link="YES"/>
                                     </textView>
@@ -364,7 +371,7 @@
                                         <rect key="frame" x="0.0" y="582.5" width="225" height="125.5"/>
                                         <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                                         <dataDetectorType key="dataDetectorTypes" link="YES"/>
                                     </textView>
