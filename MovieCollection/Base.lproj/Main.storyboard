@@ -32,7 +32,7 @@
                                 </items>
                             </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Name" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" translatesAutoresizingMaskIntoConstraints="NO" id="nGL-h3-eHv">
-                                <rect key="frame" x="20" y="80" width="374" height="100"/>
+                                <rect key="frame" x="30" y="80" width="364" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="DJ5-CQ-pPV"/>
                                 </constraints>
@@ -125,7 +125,7 @@
                             <constraint firstItem="xgu-R1-wVx" firstAttribute="bottom" secondItem="kaF-ie-pkr" secondAttribute="bottom" constant="20" id="4s8-ox-hRd"/>
                             <constraint firstItem="6Ge-6v-PO6" firstAttribute="leading" secondItem="xgu-R1-wVx" secondAttribute="leading" id="6hl-m6-JLv"/>
                             <constraint firstItem="xgu-R1-wVx" firstAttribute="bottom" secondItem="bUT-6g-8fz" secondAttribute="bottom" constant="20" id="8ac-SH-1eO"/>
-                            <constraint firstItem="nGL-h3-eHv" firstAttribute="leading" secondItem="xgu-R1-wVx" secondAttribute="leading" constant="20" id="8xG-yp-mW3"/>
+                            <constraint firstItem="nGL-h3-eHv" firstAttribute="leading" secondItem="xgu-R1-wVx" secondAttribute="leading" constant="30" id="8xG-yp-mW3"/>
                             <constraint firstItem="FHo-rg-IPe" firstAttribute="height" secondItem="QOs-bS-t0H" secondAttribute="height" id="D3a-bv-8XS"/>
                             <constraint firstItem="bUT-6g-8fz" firstAttribute="top" secondItem="nGL-h3-eHv" secondAttribute="bottom" constant="10" id="Dbh-Iq-RLV"/>
                             <constraint firstItem="zJx-jS-yJb" firstAttribute="height" secondItem="Ue3-AW-UU2" secondAttribute="height" id="EqE-hg-hoS"/>
