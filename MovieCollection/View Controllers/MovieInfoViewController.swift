@@ -11,12 +11,12 @@ import UIKit
 class MovieInfoViewController: UIViewController {
 
     // store movies array
-    var moviesArray = [Movie]()
+    var model = MovieModel()
     
     // store the movie you're currently displaying
     var movieToDisplay = Movie()
     
-    // MARK: - Connection to labels on Movie Info Summary page
+    // MARK: - Label IBOutlets
     
     // movie name connection
     @IBOutlet weak var movieNameLabel: UILabel!
@@ -29,11 +29,10 @@ class MovieInfoViewController: UIViewController {
     // comments label
     @IBOutlet weak var commentsLabel: UILabel!
     
-    // MARK: - Functions
+    // MARK: - View did load
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // have received movie, now will populate the screen with information
         populateText()
     }
@@ -44,7 +43,7 @@ class MovieInfoViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // sends movies array back to ViewController
         let dest1VC : ViewController = segue.destination as! ViewController
-        dest1VC.moviesArray = self.moviesArray
+        dest1VC.model = self.model
     }
     
     @IBAction func doneViewingMovie(_ sender: Any) {

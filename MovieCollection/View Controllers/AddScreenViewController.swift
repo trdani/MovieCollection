@@ -11,8 +11,9 @@ import UIKit
 class AddScreenViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
 
     // stores movies array
-    var moviesArray = [Movie]()
+    var model = MovieModel()
     
+    // MARK: - TextView IBOutlets
     // TODO: make into TextView objects
     // text field outlets
     @IBOutlet weak var movieNameField: UITextView!
@@ -25,7 +26,7 @@ class AddScreenViewController: UIViewController, UITextFieldDelegate, UITextView
     
     @IBOutlet weak var commentsField: UITextView!
     
-
+    // MARK: - View did load and keyboard control
     // view load function
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,22 +54,17 @@ class AddScreenViewController: UIViewController, UITextFieldDelegate, UITextView
     }
 
     // MARK: - Segue Functions
-
-    // prep for segue
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // sends movies array to ViewController
-        let dest1VC : ViewController = segue.destination as! ViewController
-        dest1VC.moviesArray = self.moviesArray
-    }
     
-    // sends back to ViewController WITHOUT saving a movie
+    // outbound to save taken care of in unwind sequence
+    
+    // Outbound to ViewController WITHOUT saving a movie
     // cancel the addition of a movie to the movies array
     @IBAction func cancelMovie(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
     // MARK: - Save user data and dismiss popup function
-    // TODO: figure out how to add movies to moviesArray and display to ViewController
+    // TODO: DELETE???
     // sends back to ViewController WITH SAVED MOVIE
     @IBAction func saveMovie(_ sender: Any) {
         // save movie by accessing data source in MovieModel
@@ -129,7 +125,7 @@ class AddScreenViewController: UIViewController, UITextFieldDelegate, UITextView
         tempMovie.comments = commentsField.text ?? "no comments"
         
         // add movie to array of movies
-        moviesArray += [tempMovie]
+        model.addMovie(movie: tempMovie)
     }
     
     

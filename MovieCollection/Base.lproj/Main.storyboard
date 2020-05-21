@@ -281,6 +281,7 @@
                                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="uk4-nq-JTx">
                                             <connections>
                                                 <action selector="saveMovie:" destination="0el-Jm-6my" id="bIE-jb-Af0"/>
+                                                <segue destination="MP0-B4-ELE" kind="unwind" unwindAction="unwindToMainViewWithSegue:" id="Fes-rX-sj4"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -420,6 +421,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IQ8-OC-ceC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="MP0-B4-ELE" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2068" y="130"/>
         </scene>
