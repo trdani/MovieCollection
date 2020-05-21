@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A400C06724772FA200F6E1B9 /* movieCSV.csv in Resources */ = {isa = PBXBuildFile; fileRef = A400C06624772FA100F6E1B9 /* movieCSV.csv */; };
 		A44E155C2472FC8500047C01 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44E155B2472FC8500047C01 /* AppDelegate.swift */; };
 		A44E155E2472FC8500047C01 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44E155D2472FC8500047C01 /* SceneDelegate.swift */; };
 		A44E15602472FC8500047C01 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44E155F2472FC8500047C01 /* ViewController.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A400C06624772FA100F6E1B9 /* movieCSV.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = movieCSV.csv; sourceTree = "<group>"; };
 		A44E15582472FC8500047C01 /* MovieCollection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieCollection.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A44E155B2472FC8500047C01 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A44E155D2472FC8500047C01 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 			isa = PBXGroup;
 			children = (
 				A44E155B2472FC8500047C01 /* AppDelegate.swift */,
+				A400C06624772FA100F6E1B9 /* movieCSV.csv */,
 				A44E155D2472FC8500047C01 /* SceneDelegate.swift */,
 				A44E157624731C0800047C01 /* Custom Classes */,
 				A44E157524731BFB00047C01 /* View Controllers */,
@@ -158,6 +161,7 @@
 			files = (
 				A44E15682472FC8B00047C01 /* LaunchScreen.storyboard in Resources */,
 				A44E15652472FC8B00047C01 /* Assets.xcassets in Resources */,
+				A400C06724772FA200F6E1B9 /* movieCSV.csv in Resources */,
 				A44E15632472FC8500047C01 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -20,31 +20,13 @@ class MovieModel  {
     
     // gets the movies from the database or data source and adds them to a movie array
     // INITIAL display of movies
-    func getMoviesAtAppStart() -> [Movie] {
-        // declare an empty dictionary to store all movies
-        var generatedMovies = [Movie]()
+    func getMoviesAtAppStart() {
         
-        // TODO: go to data source and populate array with Movies
-        // for now: manually enter some movies to display
-        for i in 1...2 {
-            // create a temp movie to append to the array
-            let tempMovie = Movie()
-            // set all temp values
-            tempMovie.name = "movie\(i)"
-            tempMovie.year = 2000 + i
-            tempMovie.director = "director name to test width behavior \(i)"
-            tempMovie.genre = "genre\(i)"
-            tempMovie.comments = "comments pertaining to the movie and other information"
-            
-            // add to array
-            generatedMovies += [tempMovie]
-            
-            // testing
-            print(tempMovie.name)
-        }
-    
-        //return the array of Movies
-        return generatedMovies
+        // go to data source and populate array with Movies
+        var rawData = readDataFromCSV(fileName: "movieCSV", fileType: "csv")
+        rawData = cleanRows(file: rawData!)
+        moviesArray = csvIntoArray(data: rawData!)
+
     }
     
     func addMovie (movie: Movie) {
@@ -61,10 +43,67 @@ class MovieModel  {
         // if this is the first time accessing the model (at app start)
         if accessCount == 1 {
             // populate initially with data from data source
-            moviesArray = getMoviesAtAppStart()
+            getMoviesAtAppStart()
         }
         // increment accessCount
         accessCount += 1
+    }
+    
+    // MARK: - File reading helper functions
+    
+    // reads in raw data
+    func readDataFromCSV(fileName:String, fileType: String)-> String!{
+        guard let filepath = Bundle.main.path(forResource: fileName, ofType: fileType)
+            else {
+                return nil
+        }
+        do {
+            var contents = try String(contentsOfFile: filepath, encoding: .utf8)
+            contents = cleanRows(file: contents)
+            //contents = cleanRows(file: contents)
+            return contents
+        } catch {
+            print("File Read Error for file \(filepath)")
+            return nil
+        }
+    }
+    
+    // clean up data
+    func cleanRows(file:String)->String{
+        var cleanFile = file
+        cleanFile = cleanFile.replacingOccurrences(of: "\r", with: "\n")
+        cleanFile = cleanFile.replacingOccurrences(of: "\n\n", with: "\n")
+        //        cleanFile = cleanFile.replacingOccurrences(of: ";;", with: "")
+        //        cleanFile = cleanFile.replacingOccurrences(of: ";\n", with: "")
+        return cleanFile
+    }
+    
+    // separates rows into Movie records
+    func csvIntoArray(data: String) -> [Movie] {
+        let rows = data.components(separatedBy: "\n")
+        var generatedMoviesArray = [Movie]()
+        for row in rows {
+            // skip last row (== null)
+            if row == "" {
+                break;
+            }
+            // separate each row into different sections to parse
+            let columns = row.components(separatedBy: ",")
+            // save into a Movie record
+            let tempMovie = Movie()
+            tempMovie.name = columns[0]
+            tempMovie.year = Int(columns[1])!
+            tempMovie.director = columns[2]
+            tempMovie.genre = columns[3]
+            tempMovie.comments = columns[4]
+            
+            // testing
+            //print(tempMovie.name)
+            
+            //append to array
+            generatedMoviesArray += [tempMovie]
+        }
+        return generatedMoviesArray
     }
     
 }
