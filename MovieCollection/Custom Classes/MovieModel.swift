@@ -23,7 +23,7 @@ class MovieModel  {
         
         // TODO: go to data source and populate array with Movies
         // for now: manually enter some movies to display
-        for i in 1...8 {
+        for i in 1...2 {
             // create a temp movie to append to the array
             let tempMovie = Movie()
             // set all temp values

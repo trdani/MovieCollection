@@ -16,7 +16,7 @@ class MovieInfoViewController: UIViewController {
     // store the movie you're currently displaying
     var movieToDisplay = Movie()
     
-    // MARK: - Connection to labels on Movie Info Summary page
+    // MARK: - Label IBOutlets
     
     // movie name connection
     @IBOutlet weak var movieNameLabel: UILabel!
@@ -29,7 +29,7 @@ class MovieInfoViewController: UIViewController {
     // comments label
     @IBOutlet weak var commentsLabel: UILabel!
     
-    // MARK: - Functions
+    // MARK: - View did load
     
     override func viewDidLoad() {
         super.viewDidLoad()

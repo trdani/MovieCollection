@@ -24,7 +24,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         collectionView.delegate = self
     }
     
-    // MARK: - Segue Functions
+    // MARK: - Outgoing Segue Functions
     
     // prep for segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -59,23 +59,36 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                 // TODO: send user an alert if the movie is not found
             }
         }
-        
-    }
-    
-    // unwind from adding a movie
-    @IBAction func unwindToMainView(segue: UIStoryboardSegue) {
-        
-        
-    }
-    
-    // TODO: remove useless- BUTTON TO ADD NEW MOVIE (send to AddScreen view)
-    @IBAction func addNewMovie(_ sender: Any) {
-        
     }
     
     // actions to take when any movie button is pressed
     @IBAction func takeToMovieInfoDisplay(_ sender: UIButton) {
         self.performSegue(withIdentifier: "MovieDisplaySegue", sender: sender)
+    }
+    
+    // MARK: - Inbound Segue Functions
+    
+    // "unwind" from adding a movie
+    @IBAction func unwindToMainView(segue: UIStoryboardSegue) {
+        // takes movies model from AddMovie VC
+        let sourceVC : AddScreenViewController = segue.source as! AddScreenViewController
+        // save data after clicking save
+        sourceVC.saveMovieData()
+        self.model = sourceVC.model // pass the model back and forth
+        
+        // refresh with the new movie in mind PROBLEM SPOT
+        let indexPath = IndexPath(item: model.moviesArray.count-1, section: 0)
+        collectionView.numberOfItems(inSection: 0) //dummy line to avoid known Swift bug
+        // update collectionView
+        collectionView.performBatchUpdates({
+            collectionView.insertItems(at: [indexPath])
+        }, completion: nil)
+        // print("UNIWIND COMPLETE")
+    }
+    
+    // TODO: remove useless- BUTTON TO ADD NEW MOVIE (send to AddScreen view)
+    @IBAction func addNewMovie(_ sender: Any) {
+        
     }
     
     // MARK: - DELEGATE/DATASOURCE Functions
@@ -97,6 +110,4 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         // return cell to be displayed
         return cellForDisplay
     }
-
 }
-
