@@ -21,6 +21,9 @@ class MovieModel  {
     // gets the movies from the database or data source and adds them to a movie array
     // INITIAL display of movies
     func getMoviesAtAppStart() {
+        // retrieve file
+        
+        
         
         // go to data source and populate array with Movies
         var rawData = readDataFromCSV(fileName: "movieCSV", fileType: "csv")
