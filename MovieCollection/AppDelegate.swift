@@ -11,8 +11,6 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         return true
@@ -37,7 +35,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // export data to a csv
         
     }
-
+    
+    // MARK: - For handling file import
+    
+    var rawData = String()
+    var fileImported = false
+    
+    // allows file to be loaded in from Files app on phone
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        //testing
+        print ("Reached AppDelegate")
+        let needTo = url.startAccessingSecurityScopedResource()
+        do {
+            let inBetweenData = try Data(contentsOf: url)
+            rawData = String(data: inBetweenData, encoding: String.Encoding.utf8) ?? "no data"
+            fileImported = true
+        } catch(let error) {
+            print(error)
+        }
+        if needTo {
+            url.stopAccessingSecurityScopedResource()
+            
+        }
+        return true
+    }
+    
+    func getRawDataFromFile() -> String {
+        return rawData
+    }
 
 }
 

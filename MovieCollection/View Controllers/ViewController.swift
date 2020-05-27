@@ -14,16 +14,40 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     var model = MovieModel()
     
+    // for file input/output handling
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // at first app start, update all the movies based on the csv file
-        model.updateMoviesArray()
+        // update all the movies based on a file if we are coming from a file
+        // testing
+        print("View did load- File import status: \(self.appDelegate.fileImported)")
+        if (self.appDelegate.fileImported) {
+            model.rawData = self.appDelegate.getRawDataFromFile()
+            model.getMoviesFromFile()
+            // done importing, set flag to false
+            self.appDelegate.fileImported = false
+        }
         
         // set the view controller as the data source/delegate for the collection view
         collectionView.dataSource = self
         collectionView.delegate = self
     }
     
+    // will run when the application comes to the forefront
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // update all the movies based on a file if we are coming from a file
+        // testing
+        print("View will appear- File import status: \(self.appDelegate.fileImported)")
+        if (self.appDelegate.fileImported) {
+            model.rawData = self.appDelegate.getRawDataFromFile()
+            model.getMoviesFromFile()
+            // done importing, set flag to false
+            self.appDelegate.fileImported = false
+        }
+    }
     // MARK: - Outgoing Segue Functions
     
     // prep for segue

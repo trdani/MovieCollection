@@ -11,26 +11,10 @@ import Foundation
 class MovieModel  {
     // store all movies in this array
     var moviesArray = [Movie]()
-    
-    // tracks number of times the model has been accessed
-    var accessCount = 1
+    var rawData:String? = String()
     
     // stores the index of the thing you're trying to delete at a certain time
     var indexToDelete = 0
-    
-    // gets the movies from the database or data source and adds them to a movie array
-    // INITIAL display of movies
-    func getMoviesAtAppStart() {
-        // retrieve file
-        
-        
-        
-        // go to data source and populate array with Movies
-        var rawData = readDataFromCSV(fileName: "movieCSV", fileType: "csv")
-        rawData = cleanRows(file: rawData!)
-        moviesArray = csvIntoArray(data: rawData!)
-
-    }
     
     func addMovie (movie: Movie) {
         moviesArray += [movie]
@@ -42,33 +26,17 @@ class MovieModel  {
         moviesArray.remove(at: indexToDelete)
     }
     
-    func updateMoviesArray () {
-        // if this is the first time accessing the model (at app start)
-        if accessCount == 1 {
-            // populate initially with data from data source
-            getMoviesAtAppStart()
-        }
-        // increment accessCount
-        accessCount += 1
-    }
     
     // MARK: - File reading helper functions
     
-    // reads in raw data
-    func readDataFromCSV(fileName:String, fileType: String)-> String!{
-        guard let filepath = Bundle.main.path(forResource: fileName, ofType: fileType)
-            else {
-                return nil
-        }
-        do {
-            var contents = try String(contentsOfFile: filepath, encoding: .utf8)
-            contents = cleanRows(file: contents)
-            //contents = cleanRows(file: contents)
-            return contents
-        } catch {
-            print("File Read Error for file \(filepath)")
-            return nil
-        }
+    // called from view controller when the view loads
+    // gets the movies from a file and adds them to a movie array
+    // INITIAL display of movies
+    func getMoviesFromFile() {
+        // go to data source and populate array with Movies
+        rawData = cleanRows(file: rawData!)
+        // transforms raw data into the moviesArray that we want
+        csvIntoArray()
     }
     
     // clean up data
@@ -82,9 +50,9 @@ class MovieModel  {
     }
     
     // separates rows into Movie records
-    func csvIntoArray(data: String) -> [Movie] {
-        let rows = data.components(separatedBy: "\n")
-        var generatedMoviesArray = [Movie]()
+    // uses raw data to
+    func csvIntoArray() {
+        let rows = rawData!.components(separatedBy: "\n")
         for row in rows {
             // skip last row (== null)
             if row == "" {
@@ -101,12 +69,11 @@ class MovieModel  {
             tempMovie.comments = columns[4]
             
             // testing
-            //print(tempMovie.name)
+            print(tempMovie.name)
             
             //append to array
-            generatedMoviesArray += [tempMovie]
+            addMovie(movie: tempMovie)
         }
-        return generatedMoviesArray
     }
     
 }
