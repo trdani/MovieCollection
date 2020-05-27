@@ -40,6 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var rawData = String()
     var fileImported = false
+    var fileURL: URL = URL(fileURLWithPath: "")
     
     // allows file to be loaded in from Files app on phone
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
@@ -48,6 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let needTo = url.startAccessingSecurityScopedResource()
         do {
             let inBetweenData = try Data(contentsOf: url)
+            // save raw data to member variable rawData (to be extracted by ViewController)
             rawData = String(data: inBetweenData, encoding: String.Encoding.utf8) ?? "no data"
             fileImported = true
         } catch(let error) {
@@ -58,6 +60,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         }
         return true
+    }
+    
+    func application(_ application: UIApplication,
+                     willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        print("test within willFinishLaunchingWithOptions")
+        if let url = launchOptions?[UIApplication.LaunchOptionsKey.url] as? NSURL {
+            fileURL = url as URL
+            print("Saved URL of file")
+        }
+        return true;
     }
     
     func getRawDataFromFile() -> String {
