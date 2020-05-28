@@ -88,14 +88,14 @@ class MovieModel  {
                 break;
             }
             // separate each row into different sections to parse
-            let columns = row.components(separatedBy: ",")
+            let columns:[String]? = row.components(separatedBy: ",")
             // save into a Movie record
             let tempMovie = Movie()
-            tempMovie.name = columns[0]
-            tempMovie.year = Int(columns[1])!
-            tempMovie.director = columns[2]
-            tempMovie.genre = columns[3]
-            tempMovie.comments = columns[4]
+            tempMovie.name = columns?[0] ?? "blank"
+            tempMovie.year = Int(columns?[1] ?? "0")!
+            tempMovie.director = columns?[2] ?? "blank"
+            tempMovie.genre = columns?[3] ?? "blank"
+            tempMovie.comments = columns?[4] ?? "blank"
             
             // testing
             //print(tempMovie.name)
