@@ -37,13 +37,19 @@ class MovieInfoViewController: UIViewController {
         populateText()
     }
     
-    // MARK: - Segue Functions
+    // MARK: - Outgoing Segue Functions
 
     // Prep for segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // sends movies array back to ViewController
-        let dest1VC : ViewController = segue.destination as! ViewController
-        dest1VC.model = self.model
+        if segue.identifier == "MovieDisplaySegue" {
+            // sends movies array back to ViewController
+            let dest1VC : ViewController = segue.destination as! ViewController
+            dest1VC.model = self.model
+        }
+        else if segue.identifier == "EditSegue" {
+            let dest1VC : EditViewController = segue.destination as! EditViewController
+            dest1VC.model = self.model
+        }
     }
     
     @IBAction func doneViewingMovie(_ sender: Any) {
@@ -57,6 +63,14 @@ class MovieInfoViewController: UIViewController {
         directorLabel.text = movieToDisplay.director
         genreLabel.text = movieToDisplay.genre
         commentsLabel.text = movieToDisplay.comments
+    }
+    
+    // MARK: - Inbound segue functions
+    
+    // save the movie record after editing
+    @IBAction func unwindAfterEditingMovie(segue: UIStoryboardSegue) {
+        let sourceVC : EditViewController = segue.source as! EditViewController
+        self.model = sourceVC.model
     }
     
     // MARK: - Helper Functions
