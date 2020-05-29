@@ -47,10 +47,12 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             dest2VC.model = self.model
             
             // save the specific movie to display by checking which button was pressed
-            let movieName = senderButton.currentTitle
+            let buttonTitle:[String] = (senderButton.currentTitle?.components(separatedBy: "|"))!
+            let movieName = buttonTitle[0]
+            let director = buttonTitle[1]
             
             // find the correct cell to send over
-            if let movieToSend = model.moviesArray.first(where: {$0.name == movieName}) {
+            if let movieToSend = model.moviesArray.first(where: {$0.name == movieName && $0.director == director}) {
                 dest2VC.movieToDisplay = movieToSend
             }
             else {

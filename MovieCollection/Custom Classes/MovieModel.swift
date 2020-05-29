@@ -30,13 +30,21 @@ class MovieModel  {
     }
     
     func addMovie (movie: Movie) {
+        // if the movie does not exist yet, add it
         moviesArray += [movie]
         print("New movie added")
+        
     }
     
     func removeMovie (movie: Movie) {
-        indexToDelete = moviesArray.firstIndex(where: {$0.name == movie.name})!
+        indexToDelete = moviesArray.firstIndex(where: {$0.name == movie.name && $0.director == movie.director})!
         moviesArray.remove(at: indexToDelete)
+    }
+    
+    func replaceMovie (movie: Movie, index: Int) {
+        // writes over existing movie data based on edits on Add/Edit screen
+        moviesArray[index] = movie
+        print("Movie edited")
     }
     
     func updateMoviesArray () {
@@ -88,14 +96,14 @@ class MovieModel  {
                 break;
             }
             // separate each row into different sections to parse
-            let columns = row.components(separatedBy: ",")
+            let columns:[String]? = row.components(separatedBy: ",")
             // save into a Movie record
             let tempMovie = Movie()
-            tempMovie.name = columns[0]
-            tempMovie.year = Int(columns[1])!
-            tempMovie.director = columns[2]
-            tempMovie.genre = columns[3]
-            tempMovie.comments = columns[4]
+            tempMovie.name = columns?[0] ?? "blank"
+            tempMovie.year = Int(columns?[1] ?? "0")!
+            tempMovie.director = columns?[2] ?? "blank"
+            tempMovie.genre = columns?[3] ?? "blank"
+            tempMovie.comments = columns?[4] ?? "blank"
             
             // testing
             //print(tempMovie.name)

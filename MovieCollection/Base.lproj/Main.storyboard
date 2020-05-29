@@ -29,11 +29,18 @@
                                                 <segue destination="x59-1i-EXl" kind="unwind" unwindAction="unwindAfterDeletingMovieWithSegue:" id="9Ck-zv-m9v"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="gVm-pg-Mqv">
-                                            <connections>
-                                                <action selector="doneViewingMovie:" destination="p64-zp-K7H" id="QrF-Eq-ogS"/>
-                                            </connections>
-                                        </barButtonItem>
+                                        <rightBarButtonItems>
+                                            <barButtonItem systemItem="done" id="gVm-pg-Mqv">
+                                                <connections>
+                                                    <action selector="doneViewingMovie:" destination="p64-zp-K7H" id="QrF-Eq-ogS"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem systemItem="edit" id="NAL-nt-slt">
+                                                <connections>
+                                                    <segue destination="0el-Jm-6my" kind="show" identifier="EditMovieSegue" id="MXg-M2-OMZ"/>
+                                                </connections>
+                                            </barButtonItem>
+                                        </rightBarButtonItems>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -263,7 +270,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1047.8260869565217" y="129.91071428571428"/>
+            <point key="canvasLocation" x="957" y="-421"/>
         </scene>
         <!--Add Screen View Controller-->
         <scene sceneID="BSz-fM-em4">
@@ -279,7 +286,7 @@
                                     <constraint firstAttribute="height" constant="60" id="0ii-oZ-XvF"/>
                                 </constraints>
                                 <items>
-                                    <navigationItem title="Add Movie" id="cdo-QO-sqZ">
+                                    <navigationItem title="Add/Edit Movie" id="cdo-QO-sqZ">
                                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="65X-nJ-MNO">
                                             <connections>
                                                 <action selector="cancelMovie:" destination="0el-Jm-6my" id="Uxf-Dl-b8d"/>
@@ -433,6 +440,9 @@
             <point key="canvasLocation" x="2068" y="130"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="MXg-M2-OMZ"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="play.rectangle" catalog="system" width="128" height="93"/>
     </resources>
