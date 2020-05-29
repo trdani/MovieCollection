@@ -23,10 +23,18 @@ class MovieCollectionViewCell: UICollectionViewCell {
     func configureCell (movie:Movie) {
         // keep track of the movie that this cell represents
         self.movie = movie
+        
         // set the movie label to the name of the movie in Movie object
-        movieLabel.text = movie.name
+        // if there is a year to display, show it
+        if movie.year != 0 {
+            movieLabel.text = movie.name + " (" + String(movie.year) + ")"
+        }
+        else {
+            movieLabel.text = movie.name
+        }
+        
         // set the button name to the name of the movie in Movie object
-        movieButton.setTitle(movie.name, for: UIControl.State.normal)
+        movieButton.setTitle(movie.name + "|" + movie.director, for: UIControl.State.normal)
     }
     
     

@@ -19,7 +19,6 @@
 		A44E157A247325D600047C01 /* AddScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44E1579247325D600047C01 /* AddScreenViewController.swift */; };
 		A44E157C247325EE00047C01 /* MovieInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44E157B247325EE00047C01 /* MovieInfoViewController.swift */; };
 		A44E157E24733A8B00047C01 /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44E157D24733A8B00047C01 /* MovieCollectionViewCell.swift */; };
-		A493E60F24807FAB0012619A /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A493E60E24807FAB0012619A /* EditViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,7 +36,6 @@
 		A44E1579247325D600047C01 /* AddScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddScreenViewController.swift; sourceTree = "<group>"; };
 		A44E157B247325EE00047C01 /* MovieInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieInfoViewController.swift; sourceTree = "<group>"; };
 		A44E157D24733A8B00047C01 /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
-		A493E60E24807FAB0012619A /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,7 +87,6 @@
 				A44E155F2472FC8500047C01 /* ViewController.swift */,
 				A44E1579247325D600047C01 /* AddScreenViewController.swift */,
 				A44E157B247325EE00047C01 /* MovieInfoViewController.swift */,
-				A493E60E24807FAB0012619A /* EditViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -184,7 +181,6 @@
 				A44E155C2472FC8500047C01 /* AppDelegate.swift in Sources */,
 				A44E155E2472FC8500047C01 /* SceneDelegate.swift in Sources */,
 				A44E157E24733A8B00047C01 /* MovieCollectionViewCell.swift in Sources */,
-				A493E60F24807FAB0012619A /* EditViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

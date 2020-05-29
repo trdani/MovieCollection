@@ -8,45 +8,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Edit View Controller-->
-        <scene sceneID="sVh-J1-3tM">
-            <objects>
-                <viewController id="gIi-ye-1CM" customClass="EditViewController" customModule="MovieCollection" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="2uM-6O-ScG">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SIC-rA-wCu">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="uYq-GY-Pyg"/>
-                                </constraints>
-                                <items>
-                                    <navigationItem title="Edit Movie" id="5bb-iJ-0dN">
-                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="yow-wq-Yks">
-                                            <connections>
-                                                <segue destination="1k5-26-Ti2" kind="unwind" unwindAction="unwindAfterEditingMovieWithSegue:" id="Sfd-HT-mU4"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="SIC-rA-wCu" firstAttribute="trailing" secondItem="gId-Vr-fS4" secondAttribute="trailing" id="aPK-LS-uRZ"/>
-                            <constraint firstItem="SIC-rA-wCu" firstAttribute="top" secondItem="gId-Vr-fS4" secondAttribute="top" id="t4r-Mk-y25"/>
-                            <constraint firstItem="SIC-rA-wCu" firstAttribute="leading" secondItem="gId-Vr-fS4" secondAttribute="leading" id="t8p-Zz-Ym5"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="gId-Vr-fS4"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="7nt-mi-ZCO"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="YAZ-KQ-B5v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="1k5-26-Ti2" userLabel="Exit" sceneMemberID="exit"/>
-            </objects>
-            <point key="canvasLocation" x="-685.50724637681162" y="219.64285714285714"/>
-        </scene>
         <!--Movie Info View Controller-->
         <scene sceneID="iPg-48-np5">
             <objects>
@@ -76,7 +37,7 @@
                                             </barButtonItem>
                                             <barButtonItem systemItem="edit" id="NAL-nt-slt">
                                                 <connections>
-                                                    <segue destination="gIi-ye-1CM" kind="show" identifier="EditSegue" id="lnY-1Z-84f"/>
+                                                    <segue destination="0el-Jm-6my" kind="show" identifier="EditMovieSegue" id="MXg-M2-OMZ"/>
                                                 </connections>
                                             </barButtonItem>
                                         </rightBarButtonItems>
@@ -309,7 +270,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1047.8260869565217" y="129.91071428571428"/>
+            <point key="canvasLocation" x="957" y="-421"/>
         </scene>
         <!--Add Screen View Controller-->
         <scene sceneID="BSz-fM-em4">
@@ -325,7 +286,7 @@
                                     <constraint firstAttribute="height" constant="60" id="0ii-oZ-XvF"/>
                                 </constraints>
                                 <items>
-                                    <navigationItem title="Add Movie" id="cdo-QO-sqZ">
+                                    <navigationItem title="Add/Edit Movie" id="cdo-QO-sqZ">
                                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="65X-nJ-MNO">
                                             <connections>
                                                 <action selector="cancelMovie:" destination="0el-Jm-6my" id="Uxf-Dl-b8d"/>
@@ -479,6 +440,9 @@
             <point key="canvasLocation" x="2068" y="130"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="MXg-M2-OMZ"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="play.rectangle" catalog="system" width="128" height="93"/>
     </resources>
