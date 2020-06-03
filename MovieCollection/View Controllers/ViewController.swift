@@ -78,6 +78,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         sourceVC.saveMovieData()
         self.model = sourceVC.model // pass the model back
         
+        // sort here
+        //self.model.sortMoviesArray()
+        
         // refresh collectionView with the new movie in mind
         let indexPath = IndexPath(item: model.moviesArray.count-1, section: 0)
         collectionView.numberOfItems(inSection: 0) //dummy line to avoid known Swift bug
@@ -95,6 +98,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         // delete the movie record
         sourceVC.deleteMovieData()
         self.model = sourceVC.model // pass the model back after deleting
+        
+        // sort here
+        //self.model.sortMoviesArray()
         
         // refresh collectionView with deleted movie in mind
         let indexPath = IndexPath(item: model.indexToDelete, section: 0)

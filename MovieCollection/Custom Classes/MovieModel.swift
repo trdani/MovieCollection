@@ -29,6 +29,8 @@ class MovieModel  {
 
     }
     
+    // MARK: Movie Model editing functions
+    
     func addMovie (movie: Movie) {
         // if the movie does not exist yet, add it
         moviesArray += [movie]
@@ -57,6 +59,16 @@ class MovieModel  {
         accessCount += 1
     }
     
+    // MARK: Sort functions
+    
+    // sorts movies array alphabetically by default
+    func sortMoviesArray (by type:String = "alpha") {
+        if type == "alpha" {
+            moviesArray = moviesArray.sorted(by: { $0.name < $1.name })
+        }
+        
+    }
+
     // MARK: - File reading helper functions
     
     // reads in raw data
