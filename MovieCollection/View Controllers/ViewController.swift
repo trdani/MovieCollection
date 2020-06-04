@@ -76,10 +76,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         let sourceVC : AddScreenViewController = segue.source as! AddScreenViewController
         // save data after clicking save
         sourceVC.saveMovieData()
-        self.model = sourceVC.model // pass the model back
-        
         // sort here
-        //self.model.sortMoviesArray()
+        sourceVC.model.sortMoviesArray()
+        self.model = sourceVC.model // pass the model back
         
         // refresh collectionView with the new movie in mind
         let indexPath = IndexPath(item: model.moviesArray.count-1, section: 0)
@@ -97,10 +96,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         // TODO: add alert about delete to verify that this is what they want to do
         // delete the movie record
         sourceVC.deleteMovieData()
-        self.model = sourceVC.model // pass the model back after deleting
-        
         // sort here
-        //self.model.sortMoviesArray()
+        sourceVC.model.sortMoviesArray()
+        self.model = sourceVC.model // pass the model back after deleting
         
         // refresh collectionView with deleted movie in mind
         let indexPath = IndexPath(item: model.indexToDelete, section: 0)
@@ -130,6 +128,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         // get a cell
         let cellForDisplay = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath) as! MovieCollectionViewCell
         // configure cell
+        
+        // TODO: ISSUE HERE WITH INDEX PATH PASSING WRONG CELL TO DISPLAY
+        print("Configuring cell \(model.moviesArray[indexPath.row].name)")
         cellForDisplay.configureCell(movie: model.moviesArray[indexPath.row])
         
         // return cell to be displayed

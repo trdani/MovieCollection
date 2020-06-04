@@ -54,6 +54,7 @@ class MovieModel  {
         if accessCount == 1 {
             // populate initially with data from data source
             getMoviesAtAppStart()
+            sortMoviesArray()
         }
         // increment accessCount
         accessCount += 1
@@ -65,8 +66,11 @@ class MovieModel  {
     func sortMoviesArray (by type:String = "alpha") {
         if type == "alpha" {
             moviesArray = moviesArray.sorted(by: { $0.name < $1.name })
+            //testing
+            for movie in moviesArray {
+                print("\(movie.name)")
+            }
         }
-        
     }
 
     // MARK: - File reading helper functions

@@ -35,6 +35,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
         
         // set the button name to the name of the movie in Movie object
         movieButton.setTitle(movie.name + "|" + movie.director, for: UIControl.State.normal)
+        //print("\(movieButton.currentTitle ?? "no movie")")
     }
     
     
