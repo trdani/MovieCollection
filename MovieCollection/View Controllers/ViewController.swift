@@ -14,6 +14,12 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     var model = MovieModel()
     
+    // holds Movies user searched for
+    var filteredMovies:[Movie] = []
+    
+    // controller of search bar
+    let searchController = UISearchController(searchResultsController: nil)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // at first app start, update all the movies based on the csv file
@@ -22,12 +28,50 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         // set the view controller as the data source/delegate for the collection view
         collectionView.dataSource = self
         collectionView.delegate = self
+        
+        // search bar items
+        
+        // inform class of any text changes
+        searchController.searchResultsUpdater = self
+        // no obscuring view when searching
+        searchController.obscuresBackgroundDuringPresentation = false
+        // keeps search bar at top of screen
+        navigationItem.hidesSearchBarWhenScrolling = false
+        // text displayed in search bar
+        searchController.searchBar.placeholder = "Search Movies"
+        // iOS 11 specific
+        navigationItem.searchController = searchController
+        // takes away search bar when not in this view controller anymore
+        definesPresentationContext = true
     }
     
-    // MARK: - Outgoing Segue Functions
+    // MARK: - Search Bar Functions
+    
+    // returns true if search bar is empty; else returns false
+    var isSearchBarEmpty: Bool {
+      return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    var isFiltering: Bool {
+      return searchController.isActive && !isSearchBarEmpty
+    }
+    
+    // filters movies based on searched text (by name or director)
+    func filterContentForSearchText(_ searchText: String) {
+        filteredMovies = model.moviesArray.filter { (movie: Movie) -> Bool in
+            return movie.name.lowercased().contains(searchText.lowercased()) ||
+                movie.director.lowercased().contains(searchText.lowercased())
+        }
+      
+      collectionView.reloadData()
+    }
+    
+    // MARK: - Outbound Segue Functions
     
     // prep for segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // remove activity from search bar to ensure appropriate movie functions
+        searchController.isActive = false
         // sends movies array to AddScreen
         if segue.identifier == "AddSegue" {
             print ("sending to Add Movie View Controller")
@@ -114,8 +158,11 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     // DATASOURCE PROTOCOL: returns the number of items in the collection view
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // returns the number of movies we want to display
-        //print ("There are \(model.moviesArray.count) movies in the array.")
+        //if filtering, return the smaller array of movies that are filtered
+        if isFiltering {
+          return filteredMovies.count
+        }
+        // returns the number of movies we want to display IF NOT FILTERING
         return model.moviesArray.count
     }
     
@@ -123,8 +170,19 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         // get a cell
         let cellForDisplay = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath) as! MovieCollectionViewCell
-        // configure cell
-        cellForDisplay.configureCell(movie: model.moviesArray[indexPath.row])
+        
+        // store movie to display inside MovieCollectionViewCell
+        var movieToDisplay = Movie()
+        
+        // configure cell if filtering (draw from filtered array)
+        if isFiltering {
+            movieToDisplay = filteredMovies[indexPath.row]
+        }
+        // configure cell if not filtering
+        else {
+            movieToDisplay = model.moviesArray[indexPath.row]
+        }
+        cellForDisplay.configureCell(movie: movieToDisplay)
         
         // return cell to be displayed
         return cellForDisplay
@@ -147,4 +205,12 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         // show the alert
         present(alert, animated: true, completion: nil)
     }
+}
+
+// MARK: - Search bar extension class
+extension ViewController: UISearchResultsUpdating {
+  func updateSearchResults(for searchController: UISearchController) {
+    let searchBar = searchController.searchBar
+    filterContentForSearchText(searchBar.text!)
+  }
 }
