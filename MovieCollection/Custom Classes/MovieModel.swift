@@ -26,7 +26,9 @@ class MovieModel  {
         var rawData = readDataFromCSV(fileName: "movieCSV", fileType: "csv")
         rawData = cleanRows(file: rawData!)
         moviesArray = csvIntoArray(data: rawData!)
-
+        
+        // initial sorting
+        sortMoviesArray(movies: &moviesArray)
     }
     
     // MARK: Movie Model editing functions
@@ -34,6 +36,7 @@ class MovieModel  {
     func addMovie (movie: Movie) {
         // if the movie does not exist yet, add it
         moviesArray += [movie]
+        //sortMoviesArray(movies: &moviesArray)
         print("New movie added")
         
     }
@@ -41,11 +44,13 @@ class MovieModel  {
     func removeMovie (movie: Movie) {
         indexToDelete = moviesArray.firstIndex(where: {$0.name == movie.name && $0.director == movie.director})!
         moviesArray.remove(at: indexToDelete)
+        //sortMoviesArray(movies: &moviesArray)
     }
     
     func replaceMovie (movie: Movie, index: Int) {
         // writes over existing movie data based on edits on Add/Edit screen
         moviesArray[index] = movie
+        //sortMoviesArray(movies: &moviesArray)
         print("Movie edited")
     }
     
@@ -54,7 +59,7 @@ class MovieModel  {
         if accessCount == 1 {
             // populate initially with data from data source
             getMoviesAtAppStart()
-            sortMoviesArray()
+            //sortMoviesArray(movies: &moviesArray)
         }
         // increment accessCount
         accessCount += 1
@@ -62,14 +67,16 @@ class MovieModel  {
     
     // MARK: Sort functions
     
-    // sorts movies array alphabetically by default
-    func sortMoviesArray (by type:String = "alpha") {
-        if type == "alpha" {
-            moviesArray = moviesArray.sorted(by: { $0.name < $1.name })
-            //testing
-            for movie in moviesArray {
-                print("\(movie.name)")
-            }
+    // sorts movies array (alphabetically by default)
+    func sortMoviesArray (movies: inout [Movie], by type:String = "alpha") {
+        // sort alphabetically
+        movies = movies.sorted(by: {
+            return ($0.name.localizedLowercase, $0.director.localizedLowercase) <
+            ($1.name.localizedLowercase, $1.director.localizedLowercase)
+        })
+        //testing
+        for movie in movies {
+            print("\(movie.name)")
         }
     }
 

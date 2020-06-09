@@ -76,8 +76,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         let sourceVC : AddScreenViewController = segue.source as! AddScreenViewController
         // save data after clicking save
         sourceVC.saveMovieData()
-        // sort here
-        sourceVC.model.sortMoviesArray()
+        // TODO: sort here???
+        //sourceVC.model.sortMoviesArray(movies: &sourceVC.model.moviesArray)
         self.model = sourceVC.model // pass the model back
         
         // refresh collectionView with the new movie in mind
@@ -86,8 +86,10 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         // update collectionView
         collectionView.performBatchUpdates({
             collectionView.insertItems(at: [indexPath])
+            //resort array after adding element
+            sourceVC.model.sortMoviesArray(movies: &sourceVC.model.moviesArray)
         }, completion: nil)
-        // print("UNIWIND COMPLETE")
+        print("UNWIND and RESORT COMPLETE")
     }
     
     // "unwind" from deleting a movie record
@@ -96,8 +98,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         // TODO: add alert about delete to verify that this is what they want to do
         // delete the movie record
         sourceVC.deleteMovieData()
-        // sort here
-        sourceVC.model.sortMoviesArray()
+        // TODO: sort here??
+        //sourceVC.model.sortMoviesArray(movies: &sourceVC.model.moviesArray)
         self.model = sourceVC.model // pass the model back after deleting
         
         // refresh collectionView with deleted movie in mind
@@ -107,6 +109,12 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             collectionView.deleteItems(at: [indexPath])
         }, completion: nil)
         print("Delete complete")
+    }
+    
+    // MARK: - Helper function for sorting collection view
+    func sortCollectionViewItems() {
+        // call moveItem(at indexPath: __, to newIndexPath) repeatedly
+        
     }
     
     // TODO: remove useless- BUTTON TO ADD NEW MOVIE (send to AddScreen view)
@@ -129,7 +137,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         let cellForDisplay = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath) as! MovieCollectionViewCell
         // configure cell
         
-        // TODO: ISSUE HERE WITH INDEX PATH PASSING WRONG CELL TO DISPLAY
+        // TODO: ISSUE HERE WITH INDEX PATH PASSING WRONG CELL TO DISPLAY AFTER SORTING
         print("Configuring cell \(model.moviesArray[indexPath.row].name)")
         cellForDisplay.configureCell(movie: model.moviesArray[indexPath.row])
         
