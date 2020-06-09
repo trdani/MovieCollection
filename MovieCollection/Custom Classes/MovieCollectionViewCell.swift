@@ -22,8 +22,9 @@ class MovieCollectionViewCell: UICollectionViewCell {
     // called from ViewController to configure the cell that is being displayed
     func configureCell (movie:Movie) {
         // keep track of the movie that this cell represents
+        movieLabel.text = nil
         self.movie = movie
-        
+        print("Movie received to configure: \(movie.name)")
         // set the movie label to the name of the movie in Movie object
         // if there is a year to display, show it
         if movie.year != 0 {

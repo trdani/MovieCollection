@@ -37,12 +37,12 @@ class MovieModel  {
         // if the movie does not exist yet, add it
         moviesArray += [movie]
         //sortMoviesArray(movies: &moviesArray)
-        print("New movie added")
+        print("New movie added: \(movie.name)")
         
     }
     
     func removeMovie (movie: Movie) {
-        indexToDelete = moviesArray.firstIndex(where: {$0.name == movie.name && $0.director == movie.director})!
+        indexToDelete = moviesArray.firstIndex(where: {$0.name == movie.name && $0.director == movie.director && $0.year == movie.year})!
         moviesArray.remove(at: indexToDelete)
         //sortMoviesArray(movies: &moviesArray)
     }
@@ -51,7 +51,7 @@ class MovieModel  {
         // writes over existing movie data based on edits on Add/Edit screen
         moviesArray[index] = movie
         //sortMoviesArray(movies: &moviesArray)
-        print("Movie edited")
+        print("Movie edited: \(movie.name)")
     }
     
     func updateMoviesArray () {
@@ -76,7 +76,7 @@ class MovieModel  {
         })
         //testing
         for movie in movies {
-            print("\(movie.name)")
+            print("Sorted: \(movie.name)")
         }
     }
 
