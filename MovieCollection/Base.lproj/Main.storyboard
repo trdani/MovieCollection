@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="o6u-uu-qoj">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -169,7 +169,7 @@
             </objects>
             <point key="canvasLocation" x="24.637681159420293" y="229.6875"/>
         </scene>
-        <!--View Controller-->
+        <!--Movie Collection-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MovieCollection" customModuleProvider="target" sceneMemberID="viewController">
@@ -177,21 +177,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WgN-oI-Ac2">
-                                <rect key="frame" x="0.0" y="54" width="414" height="44"/>
-                                <items>
-                                    <navigationItem title="Movie Collection" id="t9b-CX-ASl">
-                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="lcx-gG-qpk">
-                                            <connections>
-                                                <action selector="addNewMovie:" destination="BYZ-38-t0r" id="qEW-7u-pHW"/>
-                                                <segue destination="0el-Jm-6my" kind="presentation" identifier="AddSegue" id="52a-tv-KEg"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ynt-pY-d0W">
-                                <rect key="frame" x="20" y="118" width="374" height="734"/>
+                                <rect key="frame" x="20" y="108" width="374" height="744"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ukk-6l-NGK">
                                     <size key="itemSize" width="170" height="224"/>
@@ -253,16 +240,21 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="Ynt-pY-d0W" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="GGd-eT-QmV"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Ynt-pY-d0W" secondAttribute="bottom" constant="10" id="Ikb-Fe-jRa"/>
-                            <constraint firstItem="Ynt-pY-d0W" firstAttribute="top" secondItem="WgN-oI-Ac2" secondAttribute="bottom" constant="20" id="QZr-4m-nyb"/>
-                            <constraint firstItem="WgN-oI-Ac2" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="TXR-34-5hV"/>
-                            <constraint firstItem="WgN-oI-Ac2" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="XnT-q6-6Yi"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Ynt-pY-d0W" secondAttribute="trailing" constant="20" id="Zwc-jC-huy"/>
                             <constraint firstItem="Ynt-pY-d0W" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="hzM-XU-zFn"/>
-                            <constraint firstItem="WgN-oI-Ac2" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="jFC-U5-aUJ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Movie Collection" id="ihn-XX-UQC">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="lcx-gG-qpk">
+                            <connections>
+                                <action selector="addNewMovie:" destination="BYZ-38-t0r" id="qEW-7u-pHW"/>
+                                <segue destination="0el-Jm-6my" kind="presentation" identifier="AddSegue" id="52a-tv-KEg"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="Ynt-pY-d0W" id="8Tc-p8-6kx"/>
                         <segue destination="p64-zp-K7H" kind="presentation" identifier="MovieDisplaySegue" id="pMB-k9-WKJ"/>
@@ -270,7 +262,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="957" y="-421"/>
+            <point key="canvasLocation" x="1866.6666666666667" y="-421.20535714285711"/>
         </scene>
         <!--Add Screen View Controller-->
         <scene sceneID="BSz-fM-em4">
@@ -437,11 +429,29 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IQ8-OC-ceC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="MP0-B4-ELE" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2068" y="130"/>
+            <point key="canvasLocation" x="2976.811594202899" y="129.91071428571428"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="elr-mH-CAl">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="o6u-uu-qoj" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="yWW-hE-yfe">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="mvO-gq-mhx"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5Fi-9H-6By" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="956.52173913043487" y="-421.20535714285711"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="MXg-M2-OMZ"/>
+        <segue reference="52a-tv-KEg"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="play.rectangle" catalog="system" width="128" height="93"/>
