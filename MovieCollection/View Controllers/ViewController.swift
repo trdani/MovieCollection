@@ -60,7 +60,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     func filterContentForSearchText(_ searchText: String) {
         filteredMovies = model.moviesArray.filter { (movie: Movie) -> Bool in
             return movie.name.lowercased().contains(searchText.lowercased()) ||
-                movie.director.lowercased().contains(searchText.lowercased())
+                movie.director.lowercased().contains(searchText.lowercased()) ||
+                movie.genre.lowercased().contains(searchText.lowercased())
         }
       
       collectionView.reloadData()
