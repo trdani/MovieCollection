@@ -12,6 +12,7 @@ class AddScreenViewController: UIViewController, UITextFieldDelegate, UITextView
 
     // stores movies array
     var model = MovieModel()
+    var currentMovie = Movie()
     var existingMovieIndex:Int = -1
     
     // MARK: - TextView IBOutlets
@@ -62,16 +63,6 @@ class AddScreenViewController: UIViewController, UITextFieldDelegate, UITextView
     // Outbound to ViewController WITHOUT saving a movie
     // cancel the addition of a movie to the movies array
     @IBAction func cancelMovie(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    // MARK: - Save user data and dismiss popup function
-    // TODO: DELETE???
-    // sends back to ViewController WITH SAVED MOVIE
-    @IBAction func saveMovie(_ sender: Any) {
-        // save movie by accessing data source in MovieModel
-        saveMovieData()
-        // dismiss
         dismiss(animated: true, completion: nil)
     }
     
@@ -137,6 +128,7 @@ class AddScreenViewController: UIViewController, UITextFieldDelegate, UITextView
             // add movie to array of movies if it is the first time this record has been added
             model.addMovie(movie: tempMovie)
         }
+        currentMovie = tempMovie
     }
     
     // populates text boxes if there is a movie to display that already exists
@@ -151,8 +143,4 @@ class AddScreenViewController: UIViewController, UITextFieldDelegate, UITextView
             commentsField.text = model.moviesArray[existingMovieIndex].comments
         }
     }
-    
-    
-    
-
 }

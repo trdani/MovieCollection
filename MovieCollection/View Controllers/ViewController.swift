@@ -8,11 +8,16 @@
 
 import UIKit
 
-class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate{
+class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
     var model = MovieModel()
+    
+    // helper to unwind after adding movie segue
+    var justAdded = Bool()
+    var movieJustAdded = Movie()
+    var dummyButton = UIButton()
     
     // holds Movies user searched for
     var filteredMovies:[Movie] = []
@@ -73,20 +78,23 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // remove activity from search bar to ensure appropriate movie functions
         searchController.isActive = false
+        print("Segue was called")
         // sends movies array to AddScreen
         if segue.identifier == "AddSegue" {
-            //print ("sending to Add Movie View Controller")
+            print ("sending to Add Movie View Controller")
             let dest1VC : AddScreenViewController = segue.destination as! AddScreenViewController
             dest1VC.model = self.model
+            dest1VC.popoverPresentationController?.delegate = self
         }
         //sends movies array to show to MovieInfo
         if segue.identifier == "MovieDisplaySegue" {
-            //print ("sending to Movie Info View Controller")
+            print ("sending to Movie Info View Controller")
             // set the sender as a button
             let senderButton = sender as! UIButton
             
             // set the location for segue to MovieInfo
             let dest2VC : MovieInfoViewController = segue.destination as! MovieInfoViewController
+            dest2VC.popoverPresentationController?.delegate = self
             
             // send movies array
             dest2VC.model = self.model
@@ -121,20 +129,22 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         let sourceVC : AddScreenViewController = segue.source as! AddScreenViewController
         // save data after clicking save
         sourceVC.saveMovieData()
-        // TODO: sort here???
-        //sourceVC.model.sortMoviesArray(movies: &sourceVC.model.moviesArray)
         self.model = sourceVC.model // pass the model back
         
         // refresh collectionView with the new movie in mind
         let indexPath = IndexPath(item: model.moviesArray.count-1, section: 0)
+        movieJustAdded = sourceVC.currentMovie
+        justAdded = true
         collectionView.numberOfItems(inSection: 0) //dummy line to avoid known Swift bug
         // update collectionView
         collectionView.performBatchUpdates({
             //resort array after adding element
+            //print("Sorting after adding movie")
             sourceVC.model.sortMoviesArray(movies: &sourceVC.model.moviesArray)
             collectionView.insertItems(at: [indexPath])
         }, completion: nil)
         print("UNWIND and RESORT COMPLETE")
+        
     }
     
     // "unwind" from deleting a movie record
@@ -143,23 +153,23 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         // TODO: add alert about delete to verify that this is what they want to do
         // delete the movie record
         sourceVC.deleteMovieData()
-        // TODO: sort here??
-        //sourceVC.model.sortMoviesArray(movies: &sourceVC.model.moviesArray)
         self.model = sourceVC.model // pass the model back after deleting
         
         // refresh collectionView with deleted movie in mind
         let indexPath = IndexPath(item: model.indexToDelete, section: 0)
         collectionView.numberOfItems(inSection: 0) // dummy line
         collectionView.performBatchUpdates({
+            //print("Sorting after deleting movie")
             collectionView.deleteItems(at: [indexPath])
         }, completion: nil)
-        print("Delete complete")
+        print("DELETE COMPLETE")
     }
     
-    // MARK: - DELEGATE/DATASOURCE Functions
+    // MARK: - Delegate and Datasource Functions
     
     // DATASOURCE PROTOCOL: returns the number of items in the collection view
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
         //if filtering, return the smaller array of movies that are filtered
         if isFiltering {
           return filteredMovies.count
@@ -187,10 +197,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         }
         cellForDisplay.configureCell(movie: movieToDisplay)
         
-        // TODO: ISSUE HERE WITH INDEX PATH PASSING WRONG CELL TO DISPLAY AFTER SORTING
-        print("Configuring cell \(movieToInsert.name)")
-        cellForDisplay.configureCell(movie: movieToInsert)
-        print("Done configuring with button label: \(cellForDisplay.movieButton.currentTitle ?? "no title")")
         // return cell to be displayed
         return cellForDisplay
     }
@@ -207,7 +213,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         return false
     }
     
-    // MARK: - Alert functions (to be implemented)
+    // MARK: - TODO: Alert functions (to be implemented)
     
     func showDeleteAlert (sourceVC: MovieInfoViewController) {
         //create alert
@@ -232,4 +238,30 @@ extension ViewController: UISearchResultsUpdating {
     let searchBar = searchController.searchBar
     filterContentForSearchText(searchBar.text!)
   }
+}
+
+// MARK: - Popover extension class
+
+extension ViewController: UIPopoverPresentationControllerDelegate {
+
+    func popoverPresentationControllerDidDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) {
+        // if just added a movie, send to display
+        print("ViewController about to appear after popover")
+        if (justAdded) {
+            print("about to display a new movie")
+            // send to display controller
+            dummyButton = generateButton(movie: movieJustAdded)
+            performSegue(withIdentifier: "MovieDisplaySegue", sender: dummyButton)
+            justAdded = false
+        }
+    }
+    
+    
+    func generateButton (movie: Movie) -> UIButton{
+        let button:UIButton = UIButton()
+        print("Generating dummy button for \(movie.name)")
+        button.setTitle(movie.name + "|" + movie.director, for: UIControl.State.normal)
+        return button
+    }
+
 }
