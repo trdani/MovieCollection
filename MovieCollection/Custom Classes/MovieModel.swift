@@ -26,25 +26,32 @@ class MovieModel  {
         var rawData = readDataFromCSV(fileName: "movieCSV", fileType: "csv")
         rawData = cleanRows(file: rawData!)
         moviesArray = csvIntoArray(data: rawData!)
-
+        
+        // initial sorting
+        sortMoviesArray(movies: &moviesArray)
     }
+    
+    // MARK: Movie Model editing functions
     
     func addMovie (movie: Movie) {
         // if the movie does not exist yet, add it
         moviesArray += [movie]
-        print("New movie added")
+        //sortMoviesArray(movies: &moviesArray)
+        print("New movie added: \(movie.name)")
         
     }
     
     func removeMovie (movie: Movie) {
-        indexToDelete = moviesArray.firstIndex(where: {$0.name == movie.name && $0.director == movie.director})!
+        indexToDelete = moviesArray.firstIndex(where: {$0.name == movie.name && $0.director == movie.director && $0.year == movie.year})!
         moviesArray.remove(at: indexToDelete)
+        //sortMoviesArray(movies: &moviesArray)
     }
     
     func replaceMovie (movie: Movie, index: Int) {
         // writes over existing movie data based on edits on Add/Edit screen
         moviesArray[index] = movie
-        print("Movie edited")
+        //sortMoviesArray(movies: &moviesArray)
+        print("Movie edited: \(movie.name)")
     }
     
     func updateMoviesArray () {
@@ -52,11 +59,27 @@ class MovieModel  {
         if accessCount == 1 {
             // populate initially with data from data source
             getMoviesAtAppStart()
+            //sortMoviesArray(movies: &moviesArray)
         }
         // increment accessCount
         accessCount += 1
     }
     
+    // MARK: Sort functions
+    
+    // sorts movies array (alphabetically by default)
+    func sortMoviesArray (movies: inout [Movie], by type:String = "alpha") {
+        // sort alphabetically
+        movies = movies.sorted(by: {
+            return ($0.name.localizedLowercase, $0.director.localizedLowercase) <
+            ($1.name.localizedLowercase, $1.director.localizedLowercase)
+        })
+        //testing
+        for movie in movies {
+            print("Sorted: \(movie.name)")
+        }
+    }
+
     // MARK: - File reading helper functions
     
     // reads in raw data

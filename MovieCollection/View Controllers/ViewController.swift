@@ -75,13 +75,13 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         searchController.isActive = false
         // sends movies array to AddScreen
         if segue.identifier == "AddSegue" {
-            print ("sending to Add Movie View Controller")
+            //print ("sending to Add Movie View Controller")
             let dest1VC : AddScreenViewController = segue.destination as! AddScreenViewController
             dest1VC.model = self.model
         }
         //sends movies array to show to MovieInfo
         if segue.identifier == "MovieDisplaySegue" {
-            print ("sending to Movie Info View Controller")
+            //print ("sending to Movie Info View Controller")
             // set the sender as a button
             let senderButton = sender as! UIButton
             
@@ -121,6 +121,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         let sourceVC : AddScreenViewController = segue.source as! AddScreenViewController
         // save data after clicking save
         sourceVC.saveMovieData()
+        // TODO: sort here???
+        //sourceVC.model.sortMoviesArray(movies: &sourceVC.model.moviesArray)
         self.model = sourceVC.model // pass the model back
         
         // refresh collectionView with the new movie in mind
@@ -128,9 +130,11 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         collectionView.numberOfItems(inSection: 0) //dummy line to avoid known Swift bug
         // update collectionView
         collectionView.performBatchUpdates({
+            //resort array after adding element
+            sourceVC.model.sortMoviesArray(movies: &sourceVC.model.moviesArray)
             collectionView.insertItems(at: [indexPath])
         }, completion: nil)
-        // print("UNIWIND COMPLETE")
+        print("UNWIND and RESORT COMPLETE")
     }
     
     // "unwind" from deleting a movie record
@@ -139,6 +143,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         // TODO: add alert about delete to verify that this is what they want to do
         // delete the movie record
         sourceVC.deleteMovieData()
+        // TODO: sort here??
+        //sourceVC.model.sortMoviesArray(movies: &sourceVC.model.moviesArray)
         self.model = sourceVC.model // pass the model back after deleting
         
         // refresh collectionView with deleted movie in mind
@@ -148,11 +154,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             collectionView.deleteItems(at: [indexPath])
         }, completion: nil)
         print("Delete complete")
-    }
-    
-    // TODO: remove useless- BUTTON TO ADD NEW MOVIE (send to AddScreen view)
-    @IBAction func addNewMovie(_ sender: Any) {
-        
     }
     
     // MARK: - DELEGATE/DATASOURCE Functions
@@ -169,6 +170,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     // DATASOURCE PROTOCOL: returns which cell should be displayed for a specific location in the collection view
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         // get a cell
         let cellForDisplay = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath) as! MovieCollectionViewCell
         
@@ -185,8 +187,24 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         }
         cellForDisplay.configureCell(movie: movieToDisplay)
         
+        // TODO: ISSUE HERE WITH INDEX PATH PASSING WRONG CELL TO DISPLAY AFTER SORTING
+        print("Configuring cell \(movieToInsert.name)")
+        cellForDisplay.configureCell(movie: movieToInsert)
+        print("Done configuring with button label: \(cellForDisplay.movieButton.currentTitle ?? "no title")")
         // return cell to be displayed
         return cellForDisplay
+    }
+    
+    // not currently used
+    // check if a movie has already been displayed in the collection view
+    func hasDuplicate(_ movie:Movie, _ visibleCells: [MovieCollectionViewCell]) -> Bool {
+        for cell in visibleCells {
+            if (cell.movie!.name == movie.name && cell.movie!.director == movie.director) {
+                print("Found duplicate to \(movie.name)")
+                return true
+            }
+        }
+        return false
     }
     
     // MARK: - Alert functions (to be implemented)
