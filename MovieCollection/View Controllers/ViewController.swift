@@ -137,14 +137,14 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         justAdded = true
         collectionView.numberOfItems(inSection: 0) //dummy line to avoid known Swift bug
         // update collectionView
+        
         collectionView.performBatchUpdates({
             //resort array after adding element
             //print("Sorting after adding movie")
-            sourceVC.model.sortMoviesArray(movies: &sourceVC.model.moviesArray)
+            self.model.sortMoviesArray(movies: &self.model.moviesArray)
             collectionView.insertItems(at: [indexPath])
         }, completion: nil)
         print("UNWIND and RESORT COMPLETE")
-        
     }
     
     // "unwind" from deleting a movie record
@@ -159,7 +159,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         let indexPath = IndexPath(item: model.indexToDelete, section: 0)
         collectionView.numberOfItems(inSection: 0) // dummy line
         collectionView.performBatchUpdates({
-            //print("Sorting after deleting movie")
             collectionView.deleteItems(at: [indexPath])
         }, completion: nil)
         print("DELETE COMPLETE")
@@ -256,12 +255,10 @@ extension ViewController: UIPopoverPresentationControllerDelegate {
         }
     }
     
-    
     func generateButton (movie: Movie) -> UIButton{
         let button:UIButton = UIButton()
         print("Generating dummy button for \(movie.name)")
         button.setTitle(movie.name + "|" + movie.director, for: UIControl.State.normal)
         return button
     }
-
 }

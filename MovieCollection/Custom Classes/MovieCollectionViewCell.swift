@@ -23,6 +23,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
     func configureCell (movie:Movie) {
         // keep track of the movie that this cell represents
         movieLabel.text = nil
+        self.movie = nil
         self.movie = movie
         //print("Movie received to configure: \(movie.name)")
         // set the movie label to the name of the movie in Movie object
