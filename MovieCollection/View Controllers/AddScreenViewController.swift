@@ -12,6 +12,8 @@ class AddScreenViewController: UIViewController, UITextFieldDelegate, UITextView
 
     // stores movies array
     var model = MovieModel()
+    var currentMovie = Movie()
+    var existingMovieIndex:Int = -1
     
     // MARK: - TextView IBOutlets
     // TODO: make into TextView objects
@@ -40,6 +42,7 @@ class AddScreenViewController: UIViewController, UITextFieldDelegate, UITextView
         
         // add borders to the text boxes
         addBorders()
+        setupExistingMovie()
         
         // allow tapping off the keyboard anywhere on the screen and removing the keyboard
         let tapRecogniser = UITapGestureRecognizer()
@@ -60,16 +63,6 @@ class AddScreenViewController: UIViewController, UITextFieldDelegate, UITextView
     // Outbound to ViewController WITHOUT saving a movie
     // cancel the addition of a movie to the movies array
     @IBAction func cancelMovie(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    // MARK: - Save user data and dismiss popup function
-    // TODO: DELETE???
-    // sends back to ViewController WITH SAVED MOVIE
-    @IBAction func saveMovie(_ sender: Any) {
-        // save movie by accessing data source in MovieModel
-        saveMovieData()
-        // dismiss
         dismiss(animated: true, completion: nil)
     }
     
@@ -124,11 +117,30 @@ class AddScreenViewController: UIViewController, UITextFieldDelegate, UITextView
         tempMovie.genre = genreField.text ?? "no genre entered"
         tempMovie.comments = commentsField.text ?? "no comments"
         
-        // add movie to array of movies
-        model.addMovie(movie: tempMovie)
+        // replace movie record if it already exists and this is editing the record
+        if existingMovieIndex != -1 {
+            model.replaceMovie(movie: tempMovie, index: existingMovieIndex)
+            // reset value
+            existingMovieIndex = -1
+        }
+        // otherwise, add a new movie
+        else {
+            // add movie to array of movies if it is the first time this record has been added
+            model.addMovie(movie: tempMovie)
+        }
+        currentMovie = tempMovie
     }
     
-    
-    
-
+    // populates text boxes if there is a movie to display that already exists
+    func setupExistingMovie() {
+        // if there is an existing movie to try and setup in the text fields,
+        // then set it up
+        if existingMovieIndex != -1 {
+            movieNameField.text = model.moviesArray[existingMovieIndex].name
+            yearField.text = String(model.moviesArray[existingMovieIndex].year)
+            directorField.text = model.moviesArray[existingMovieIndex].director
+            genreField.text = model.moviesArray[existingMovieIndex].genre
+            commentsField.text = model.moviesArray[existingMovieIndex].comments
+        }
+    }
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate{
+class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -16,6 +16,18 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     // for file input/output handling
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
+
+    // helper to unwind after adding movie segue
+    var justAdded = Bool()
+    var movieJustAdded = Movie()
+    var dummyButton = UIButton()
+    
+    // holds Movies user searched for
+    var filteredMovies:[Movie] = []
+    
+    // controller of search bar
+    let searchController = UISearchController(searchResultsController: nil)
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +44,21 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         // set the view controller as the data source/delegate for the collection view
         collectionView.dataSource = self
         collectionView.delegate = self
+        
+        // search bar items
+        
+        // inform class of any text changes
+        searchController.searchResultsUpdater = self
+        // no obscuring view when searching
+        searchController.obscuresBackgroundDuringPresentation = false
+        // keeps search bar at top of screen
+        navigationItem.hidesSearchBarWhenScrolling = false
+        // text displayed in search bar
+        searchController.searchBar.placeholder = "Search Movies"
+        // iOS 11 specific
+        navigationItem.searchController = searchController
+        // takes away search bar when not in this view controller anymore
+        definesPresentationContext = true
     }
     
     // will run when the application comes to the forefront
@@ -48,15 +75,42 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             self.appDelegate.fileImported = false
         }
     }
-    // MARK: - Outgoing Segue Functions
+  
+    // MARK: - Search Bar Functions
+    
+    // returns true if search bar is empty; else returns false
+    var isSearchBarEmpty: Bool {
+      return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    var isFiltering: Bool {
+      return searchController.isActive && !isSearchBarEmpty
+    }
+    
+    // filters movies based on searched text (by name or director)
+    func filterContentForSearchText(_ searchText: String) {
+        filteredMovies = model.moviesArray.filter { (movie: Movie) -> Bool in
+            return movie.name.lowercased().contains(searchText.lowercased()) ||
+                movie.director.lowercased().contains(searchText.lowercased()) ||
+                movie.genre.lowercased().contains(searchText.lowercased())
+        }
+      
+      collectionView.reloadData()
+    }
+    
+    // MARK: - Outbound Segue Functions
     
     // prep for segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // remove activity from search bar to ensure appropriate movie functions
+        searchController.isActive = false
+        print("Segue was called")
         // sends movies array to AddScreen
         if segue.identifier == "AddSegue" {
             print ("sending to Add Movie View Controller")
             let dest1VC : AddScreenViewController = segue.destination as! AddScreenViewController
             dest1VC.model = self.model
+            dest1VC.popoverPresentationController?.delegate = self
         }
         //sends movies array to show to MovieInfo
         if segue.identifier == "MovieDisplaySegue" {
@@ -66,15 +120,18 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             
             // set the location for segue to MovieInfo
             let dest2VC : MovieInfoViewController = segue.destination as! MovieInfoViewController
+            dest2VC.popoverPresentationController?.delegate = self
             
             // send movies array
             dest2VC.model = self.model
             
             // save the specific movie to display by checking which button was pressed
-            let movieName = senderButton.currentTitle
+            let buttonTitle:[String] = (senderButton.currentTitle?.components(separatedBy: "|"))!
+            let movieName = buttonTitle[0]
+            let director = buttonTitle[1]
             
             // find the correct cell to send over
-            if let movieToSend = model.moviesArray.first(where: {$0.name == movieName}) {
+            if let movieToSend = model.moviesArray.first(where: {$0.name == movieName && $0.director == director}) {
                 dest2VC.movieToDisplay = movieToSend
             }
             else {
@@ -102,12 +159,18 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         
         // refresh collectionView with the new movie in mind
         let indexPath = IndexPath(item: model.moviesArray.count-1, section: 0)
+        movieJustAdded = sourceVC.currentMovie
+        justAdded = true
         collectionView.numberOfItems(inSection: 0) //dummy line to avoid known Swift bug
         // update collectionView
+        
         collectionView.performBatchUpdates({
+            //resort array after adding element
+            //print("Sorting after adding movie")
+            self.model.sortMoviesArray(movies: &self.model.moviesArray)
             collectionView.insertItems(at: [indexPath])
         }, completion: nil)
-        // print("UNIWIND COMPLETE")
+        print("UNWIND and RESORT COMPLETE")
     }
     
     // "unwind" from deleting a movie record
@@ -124,35 +187,58 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         collectionView.performBatchUpdates({
             collectionView.deleteItems(at: [indexPath])
         }, completion: nil)
-        print("Delete complete")
+        print("DELETE COMPLETE")
     }
     
-    // TODO: remove useless- BUTTON TO ADD NEW MOVIE (send to AddScreen view)
-    @IBAction func addNewMovie(_ sender: Any) {
-        
-    }
-    
-    // MARK: - DELEGATE/DATASOURCE Functions
+    // MARK: - Delegate and Datasource Functions
     
     // DATASOURCE PROTOCOL: returns the number of items in the collection view
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // returns the number of movies we want to display
-        //print ("There are \(model.moviesArray.count) movies in the array.")
+        
+        //if filtering, return the smaller array of movies that are filtered
+        if isFiltering {
+          return filteredMovies.count
+        }
+        // returns the number of movies we want to display IF NOT FILTERING
         return model.moviesArray.count
     }
     
     // DATASOURCE PROTOCOL: returns which cell should be displayed for a specific location in the collection view
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         // get a cell
         let cellForDisplay = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath) as! MovieCollectionViewCell
-        // configure cell
-        cellForDisplay.configureCell(movie: model.moviesArray[indexPath.row])
+        
+        // store movie to display inside MovieCollectionViewCell
+        var movieToDisplay = Movie()
+        
+        // configure cell if filtering (draw from filtered array)
+        if isFiltering {
+            movieToDisplay = filteredMovies[indexPath.row]
+        }
+        // configure cell if not filtering
+        else {
+            movieToDisplay = model.moviesArray[indexPath.row]
+        }
+        cellForDisplay.configureCell(movie: movieToDisplay)
         
         // return cell to be displayed
         return cellForDisplay
     }
     
-    // MARK: - Alert functions (to be implemented)
+    // not currently used
+    // check if a movie has already been displayed in the collection view
+    func hasDuplicate(_ movie:Movie, _ visibleCells: [MovieCollectionViewCell]) -> Bool {
+        for cell in visibleCells {
+            if (cell.movie!.name == movie.name && cell.movie!.director == movie.director) {
+                print("Found duplicate to \(movie.name)")
+                return true
+            }
+        }
+        return false
+    }
+    
+    // MARK: - TODO: Alert functions (to be implemented)
     
     func showDeleteAlert (sourceVC: MovieInfoViewController) {
         //create alert
@@ -168,5 +254,37 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         
         // show the alert
         present(alert, animated: true, completion: nil)
+    }
+}
+
+// MARK: - Search bar extension class
+extension ViewController: UISearchResultsUpdating {
+  func updateSearchResults(for searchController: UISearchController) {
+    let searchBar = searchController.searchBar
+    filterContentForSearchText(searchBar.text!)
+  }
+}
+
+// MARK: - Popover extension class
+
+extension ViewController: UIPopoverPresentationControllerDelegate {
+
+    func popoverPresentationControllerDidDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) {
+        // if just added a movie, send to display
+        print("ViewController about to appear after popover")
+        if (justAdded) {
+            print("about to display a new movie")
+            // send to display controller
+            dummyButton = generateButton(movie: movieJustAdded)
+            performSegue(withIdentifier: "MovieDisplaySegue", sender: dummyButton)
+            justAdded = false
+        }
+    }
+    
+    func generateButton (movie: Movie) -> UIButton{
+        let button:UIButton = UIButton()
+        print("Generating dummy button for \(movie.name)")
+        button.setTitle(movie.name + "|" + movie.director, for: UIControl.State.normal)
+        return button
     }
 }
