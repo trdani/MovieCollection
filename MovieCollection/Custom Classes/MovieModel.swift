@@ -21,7 +21,7 @@ class MovieModel  {
     // INITIAL display of movies
     func getMoviesAtAppStart() {
         
-        // go to data source and populate array with Movies
+        // go to data source (currently a file within scope) and populate array with Movies
         var rawData = readDataFromCSV(fileName: "movieCSV", fileType: "csv")
         rawData = cleanRows(file: rawData!)
         moviesArray = csvIntoArray(data: rawData!)
@@ -29,6 +29,11 @@ class MovieModel  {
         // initial sorting
         sortMoviesArray(movies: &moviesArray)
     }
+    
+    // MARK: Database functions
+    
+    
+    
     
     // MARK: Movie Model editing functions
     
