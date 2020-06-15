@@ -27,7 +27,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     override func viewDidLoad() {
         super.viewDidLoad()
         // at first app start, update all the movies based on the csv file
-        model.updateMoviesArray()
+        model.loadDatabase()
+        //model.updateMoviesArray()
         
         // set the view controller as the data source/delegate for the collection view
         collectionView.dataSource = self
