@@ -9,7 +9,7 @@
 import Foundation
 
 class Movie {
-    var unique_id = 0
+    var unique_id:String = ""
     var name = ""
     var year = 0
     var director = ""

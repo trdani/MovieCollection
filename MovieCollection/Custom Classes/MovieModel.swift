@@ -15,15 +15,13 @@ class MovieModel  {
     // tracks number of times the model has been accessed
     var accessCount = 1
     
-    var movieCount = 0
-    
     // stores the index of the thing you're trying to delete at a certain time
     var indexToDelete = 0
     
     // database items
     var database:Connection!
     let moviesTable = Table("movies")
-    let uniqueIdCol = Expression<Int>("unique_id")
+    let uniqueIdCol = Expression<String>("unique_id")
     let nameCol = Expression<String>("name")
     let yearCol = Expression<Int>("year")
     let directorCol = Expression<String>("director")
@@ -44,7 +42,7 @@ class MovieModel  {
         sortMoviesArray(movies: &moviesArray)
     }
     
-    // MARK: Database functions
+    // MARK: Database setup functions
     
     // call in viewDidLoad
     func loadDatabase () {
@@ -52,7 +50,7 @@ class MovieModel  {
         do {
             let documentDirectory = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
             // create file URL for database
-            let fileUrl = documentDirectory.appendingPathComponent("movies2").appendingPathExtension("sqlite3")
+            let fileUrl = documentDirectory.appendingPathComponent("movies4").appendingPathExtension("sqlite3")
             // connect database to the file URL within the directory
             let database = try Connection(fileUrl.path)
             self.database = database
@@ -74,42 +72,14 @@ class MovieModel  {
         do {
             try self.database.run(createTable)
             print("Created table")
+            updateMoviesArray()
         } catch {
             // this means db already existed
             print(error)
             // populate movies array from db
             migrateDbIntoArray()
-            // update movieCount to be moviesArray.count
-            movieCount = moviesArray.count
         }
         
-    }
-    
-    func insertMovieIntoDB (movie:Movie) {
-        let insertMovie = self.moviesTable.insert(self.uniqueIdCol <- movie.unique_id, self.nameCol <- movie.name, self.yearCol <- movie.year, self.directorCol <- movie.director, self.genreCol <- movie.genre, self.commentsCol <- movie.comments)
-        
-        do {
-            try self.database.run(insertMovie)
-            print("Inserted movie: \(movie.name)")
-        } catch {
-            print(error)
-        }
-    }
-    
-    // PROBLEM SPOT: updating not happening correctly within database
-    func updateMovieInDB (movie:Movie) {
-        let movieToUpdate = moviesTable.filter(self.uniqueIdCol == Int(movie.unique_id))
-        print("Updating movie \(movieToUpdate[uniqueIdCol])")
-        let updateMovie = movieToUpdate.update(self.nameCol <- movie.name, self.yearCol <- movie.year, self.directorCol <- movie.director, self.genreCol <- movie.genre, self.commentsCol <- movie.comments)
-        
-        do {
-            try self.database.run(updateMovie)
-            print("Movie edited: \(movie.name)")
-        } catch {
-            print(error)
-        }
-        
-        testingDBConnection()
     }
     
     func migrateDbIntoArray () {
@@ -133,6 +103,48 @@ class MovieModel  {
         testingDBConnection()
     }
     
+    // MARK: - Database Editing Functions
+    
+    func insertMovieIntoDB (movie:Movie) {
+        let insertMovie = self.moviesTable.insert(self.uniqueIdCol <- movie.unique_id, self.nameCol <- movie.name, self.yearCol <- movie.year, self.directorCol <- movie.director, self.genreCol <- movie.genre, self.commentsCol <- movie.comments)
+        
+        do {
+            try self.database.run(insertMovie)
+            print("Inserted movie: \(movie.name)")
+        } catch {
+            print(error)
+        }
+    }
+    
+    // PROBLEM SPOT: updating not happening correctly within database
+    func updateMovieInDB (movie:Movie) {
+        let movieToUpdate = moviesTable.filter(self.uniqueIdCol == movie.unique_id)
+        let updateMovie = movieToUpdate.update(self.nameCol <- movie.name, self.yearCol <- movie.year, self.directorCol <- movie.director, self.genreCol <- movie.genre, self.commentsCol <- movie.comments)
+        
+        do {
+            try self.database.run(updateMovie)
+            print("Movie edited: \(movie.name)")
+        } catch {
+            print(error)
+        }
+        testingDBConnection()
+    }
+    
+    func deleteMovieFromDB (movie:Movie) {
+        let movieToDelete = self.moviesTable.filter(self.uniqueIdCol == movie.unique_id)
+        
+        let deleteMovie = movieToDelete.delete()
+        
+        do {
+            try self.database.run(deleteMovie)
+            print("Deleted movie: \(movie.name)")
+        } catch {
+            print(error)
+        }
+        testingDBConnection()
+        
+    }
+    
     // for testing purposes
     func testingDBConnection () {
         print("Testing db connection- list of movies")
@@ -146,12 +158,11 @@ class MovieModel  {
         }
     }
     
-    // MARK: Movie Model editing functions
+    // MARK: - Movie Model editing functions
     
     func addMovie (movie: Movie) {
         // if the movie does not exist yet, add it
-        movieCount += 1
-        movie.unique_id = movieCount
+        movie.unique_id = UUID().uuidString
         moviesArray += [movie]
         // add to DB
         insertMovieIntoDB(movie: movie)
@@ -160,8 +171,8 @@ class MovieModel  {
     func removeMovie (movie: Movie) {
         indexToDelete = moviesArray.firstIndex(where: {$0.name == movie.name && $0.director == movie.director && $0.year == movie.year})!
         moviesArray.remove(at: indexToDelete)
-        movieCount -= 1
         // remove from DB
+        deleteMovieFromDB(movie: movie)
     }
     
     func replaceMovie (movie: Movie, index: Int) {
@@ -182,7 +193,7 @@ class MovieModel  {
         accessCount += 1
     }
     
-    // MARK: Sort functions
+    // MARK: - Sort functions
     
     // sorts movies array (alphabetically by default)
     func sortMoviesArray (movies: inout [Movie], by type:String = "alpha") {
@@ -244,16 +255,13 @@ class MovieModel  {
             tempMovie.director = columns?[2] ?? "blank"
             tempMovie.genre = columns?[3] ?? "blank"
             tempMovie.comments = columns?[4] ?? "blank"
-            movieCount += 1
-            tempMovie.unique_id = movieCount
+            tempMovie.unique_id = UUID().uuidString
             
             //append to array
             
             generatedMoviesArray += [tempMovie]
             //add to db
             insertMovieIntoDB(movie: tempMovie)
-            
-            
         }
         //test if DB was populated
         testingDBConnection()
