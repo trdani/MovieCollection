@@ -100,12 +100,10 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             dest2VC.model = self.model
             
             // save the specific movie to display by checking which button was pressed
-            let buttonTitle:[String] = (senderButton.currentTitle?.components(separatedBy: "|"))!
-            let movieName = buttonTitle[0]
-            let director = buttonTitle[1]
-            
+            let buttonTitle:String = senderButton.currentTitle!
+
             // find the correct cell to send over
-            if let movieToSend = model.moviesArray.first(where: {$0.name == movieName && $0.director == director}) {
+            if let movieToSend = model.moviesArray.first(where: {$0.unique_id == buttonTitle}) {
                 dest2VC.movieToDisplay = movieToSend
             }
             else {
@@ -257,7 +255,7 @@ extension ViewController: UIPopoverPresentationControllerDelegate {
     func generateButton (movie: Movie) -> UIButton{
         let button:UIButton = UIButton()
         print("Generating dummy button for \(movie.name)")
-        button.setTitle(movie.name + "|" + movie.director, for: UIControl.State.normal)
+        button.setTitle(movie.unique_id, for: UIControl.State.normal)
         return button
     }
 }

@@ -35,8 +35,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
             movieLabel.text = movie.name
         }
         
-        // set the button name to the name of the movie in Movie object
-        movieButton.setTitle(movie.name + "|" + movie.director, for: UIControl.State.normal)
-        //print("\(movieButton.currentTitle ?? "no movie")")
+        // set the button name to the unique_id of the movie in Movie object
+        movieButton.setTitle(movie.unique_id, for: UIControl.State.normal)
     }
 }
