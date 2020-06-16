@@ -51,7 +51,7 @@ class MovieInfoViewController: UIViewController {
             let dest1VC : AddScreenViewController = segue.destination as! AddScreenViewController
             dest1VC.model = self.model
             // send the location of the movie to edit within the model
-            dest1VC.existingMovieIndex = model.moviesArray.firstIndex(where: {$0.name == movieToDisplay.name && $0.director == movieToDisplay.director})!
+            dest1VC.existingMovieIndex = model.moviesArray.firstIndex(where: {$0.unique_id == movieToDisplay.unique_id})!
         }
     }
     

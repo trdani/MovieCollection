@@ -77,12 +77,12 @@ class MovieModel  {
             // this means db already existed
             print(error)
             // populate movies array from db
-            migrateDbIntoArray()
+            migrateDBIntoArray()
         }
         
     }
     
-    func migrateDbIntoArray () {
+    func migrateDBIntoArray () {
         do {
             let movies = try self.database.prepare(self.moviesTable)
             for movie in movies {
@@ -100,7 +100,7 @@ class MovieModel  {
             print(error)
         }
         sortMoviesArray(movies: &moviesArray)
-        testingDBConnection()
+        printContentsOfDB()
     }
     
     // MARK: - Database Editing Functions
@@ -116,18 +116,24 @@ class MovieModel  {
         }
     }
     
-    // PROBLEM SPOT: updating not happening correctly within database
     func updateMovieInDB (movie:Movie) {
         let movieToUpdate = moviesTable.filter(self.uniqueIdCol == movie.unique_id)
-        let updateMovie = movieToUpdate.update(self.nameCol <- movie.name, self.yearCol <- movie.year, self.directorCol <- movie.director, self.genreCol <- movie.genre, self.commentsCol <- movie.comments)
-        
         do {
-            try self.database.run(updateMovie)
-            print("Movie edited: \(movie.name)")
+            // debugging
+            //let row = try database.pluck(movieToUpdate)
+            // print("Updating \(row![self.nameCol])")
+            
+            try self.database.run(movieToUpdate.update(
+                [self.nameCol <- movie.name,
+                 self.yearCol <- movie.year,
+                 self.directorCol <- movie.director,
+                 self.genreCol <- movie.genre,
+                 self.commentsCol <- movie.comments]))
+            print("Movie updated: \(movie.name)")
         } catch {
             print(error)
         }
-        testingDBConnection()
+        printContentsOfDB()
     }
     
     func deleteMovieFromDB (movie:Movie) {
@@ -141,13 +147,13 @@ class MovieModel  {
         } catch {
             print(error)
         }
-        testingDBConnection()
+        printContentsOfDB()
         
     }
     
     // for testing purposes
-    func testingDBConnection () {
-        print("Testing db connection- list of movies")
+    func printContentsOfDB () {
+        print("Database Contents:")
         do {
             let movies = try self.database.prepare(self.moviesTable)
             for movie in movies {
@@ -264,7 +270,7 @@ class MovieModel  {
             insertMovieIntoDB(movie: tempMovie)
         }
         //test if DB was populated
-        testingDBConnection()
+        printContentsOfDB()
         return generatedMoviesArray
     }
     
