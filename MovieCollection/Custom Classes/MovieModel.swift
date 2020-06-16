@@ -79,7 +79,6 @@ class MovieModel  {
             // populate movies array from db
             migrateDBIntoArray()
         }
-        
     }
     
     func migrateDBIntoArray () {
@@ -175,7 +174,7 @@ class MovieModel  {
     }
     
     func removeMovie (movie: Movie) {
-        indexToDelete = moviesArray.firstIndex(where: {$0.name == movie.name && $0.director == movie.director && $0.year == movie.year})!
+        indexToDelete = moviesArray.firstIndex(where: {$0.unique_id == movie.unique_id})!
         moviesArray.remove(at: indexToDelete)
         // remove from DB
         deleteMovieFromDB(movie: movie)

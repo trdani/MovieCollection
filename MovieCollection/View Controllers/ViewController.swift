@@ -78,17 +78,17 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // remove activity from search bar to ensure appropriate movie functions
         searchController.isActive = false
-        print("Segue was called")
+        //print("Segue was called")
         // sends movies array to AddScreen
         if segue.identifier == "AddSegue" {
-            print ("sending to Add Movie View Controller")
+            //print ("sending to Add Movie View Controller")
             let dest1VC : AddScreenViewController = segue.destination as! AddScreenViewController
             dest1VC.model = self.model
             dest1VC.popoverPresentationController?.delegate = self
         }
         //sends movies array to show to MovieInfo
         if segue.identifier == "MovieDisplaySegue" {
-            print ("sending to Movie Info View Controller")
+            //print ("sending to Movie Info View Controller")
             // set the sender as a button
             let senderButton = sender as! UIButton
             
@@ -211,7 +211,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     }
     
     // MARK: - TODO: Alert functions (to be implemented)
-    
+    // not currently in use
     func showDeleteAlert (sourceVC: MovieInfoViewController) {
         //create alert
         let alert = UIAlertController(title: "Delete", message: "Are you sure you want to delete this movie record?", preferredStyle: .alert)
