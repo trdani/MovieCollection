@@ -119,6 +119,8 @@ class AddScreenViewController: UIViewController, UITextFieldDelegate, UITextView
         
         // replace movie record if it already exists and this is editing the record
         if existingMovieIndex != -1 {
+            // attach the edited movie to the existing unique id
+            tempMovie.unique_id = model.moviesArray[existingMovieIndex].unique_id
             model.replaceMovie(movie: tempMovie, index: existingMovieIndex)
             // reset value
             existingMovieIndex = -1
