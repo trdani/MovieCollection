@@ -24,18 +24,20 @@
                                 <items>
                                     <navigationItem title="View Movie" id="W9H-oh-w2S">
                                         <barButtonItem key="leftBarButtonItem" title="Delete" id="DBE-zm-Hvy">
-                                            <color key="tintColor" red="0.85409245466321249" green="0.039753766977930295" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="tintColor" red="0.64847659570000005" green="0.054514810380000001" blue="0.084736402860000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <connections>
                                                 <segue destination="x59-1i-EXl" kind="unwind" unwindAction="unwindAfterDeletingMovieWithSegue:" id="9Ck-zv-m9v"/>
                                             </connections>
                                         </barButtonItem>
                                         <rightBarButtonItems>
                                             <barButtonItem systemItem="done" id="gVm-pg-Mqv">
+                                                <color key="tintColor" red="0.3260469808" green="0.50997659289999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
                                                     <action selector="doneViewingMovie:" destination="p64-zp-K7H" id="QrF-Eq-ogS"/>
                                                 </connections>
                                             </barButtonItem>
                                             <barButtonItem systemItem="edit" id="NAL-nt-slt">
+                                                <color key="tintColor" red="0.37319153033741803" green="0.5963595296264248" blue="0.29444156820870454" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
                                                     <segue destination="0el-Jm-6my" kind="show" identifier="EditMovieSegue" id="MXg-M2-OMZ"/>
                                                 </connections>
@@ -153,10 +155,10 @@
                         <viewLayoutGuide key="safeArea" id="xgu-R1-wVx"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="firstColor">
-                                <color key="value" red="0.88815438069999997" green="0.074663554509999994" blue="0.1160550865" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="color" keyPath="secondColor">
-                                <color key="value" red="0.54950476930000003" green="0.046194648349999999" blue="0.071803759480000007" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="isHorizontal" value="NO"/>
                         </userDefinedRuntimeAttributes>
@@ -211,7 +213,7 @@
                                                         <constraint firstAttribute="height" constant="224" id="WTF-hE-ZSz"/>
                                                     </constraints>
                                                     <color key="tintColor" red="0.27026645799999999" green="0.29195149529999997" blue="0.31507605049999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <state key="normal" backgroundImage="golden ticket">
+                                                    <state key="normal" backgroundImage="film_strip">
                                                         <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="100" scale="large" weight="ultraLight"/>
                                                     </state>
@@ -220,10 +222,10 @@
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Name (2020)" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" preferredMaxLayoutWidth="120" translatesAutoresizingMaskIntoConstraints="NO" id="E4m-tO-V1X">
-                                                    <rect key="frame" x="20" y="62" width="130" height="100"/>
+                                                    <rect key="frame" x="32.5" y="62" width="105" height="100"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="100" id="2wm-NH-LDW"/>
-                                                        <constraint firstAttribute="width" constant="130" id="PWG-bT-uMU"/>
+                                                        <constraint firstAttribute="width" constant="105" id="PWG-bT-uMU"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -258,16 +260,17 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="firstColor">
-                                <color key="value" red="0.88815438066269436" green="0.074663554510733865" blue="0.11605508649578965" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="color" keyPath="secondColor">
-                                <color key="value" red="0.54950476927512959" green="0.046194648349388245" blue="0.071803759477592335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="isHorizontal" value="NO"/>
                         </userDefinedRuntimeAttributes>
                     </view>
                     <navigationItem key="navigationItem" title="Movie Collection" id="ihn-XX-UQC">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="lcx-gG-qpk">
+                            <color key="tintColor" red="0.3260469808" green="0.50997659289999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="addNewMovie:" destination="BYZ-38-t0r" id="qEW-7u-pHW"/>
                                 <segue destination="0el-Jm-6my" kind="presentation" identifier="AddSegue" id="52a-tv-KEg"/>
@@ -299,11 +302,13 @@
                                 <items>
                                     <navigationItem title="Add/Edit Movie" id="cdo-QO-sqZ">
                                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="65X-nJ-MNO">
+                                            <color key="tintColor" red="0.64847659570000005" green="0.054514810380000001" blue="0.084736402860000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <connections>
                                                 <action selector="cancelMovie:" destination="0el-Jm-6my" id="Uxf-Dl-b8d"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="uk4-nq-JTx">
+                                            <color key="tintColor" red="0.32604698080496342" green="0.50997659291493225" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <connections>
                                                 <action selector="saveMovie:" destination="0el-Jm-6my" id="bIE-jb-Af0"/>
                                                 <segue destination="MP0-B4-ELE" kind="unwind" unwindAction="unwindToMainViewWithSegue:" id="Fes-rX-sj4"/>
@@ -426,10 +431,10 @@
                         <viewLayoutGuide key="safeArea" id="evp-47-cOr"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="firstColor">
-                                <color key="value" red="0.88815438069999997" green="0.074663554509999994" blue="0.1160550865" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="color" keyPath="secondColor">
-                                <color key="value" red="0.54950476930000003" green="0.046194648349999999" blue="0.071803759480000007" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="isHorizontal" value="NO"/>
                         </userDefinedRuntimeAttributes>
@@ -482,6 +487,6 @@
         <segue reference="52a-tv-KEg"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="golden ticket" width="89" height="170.5"/>
+        <image name="film_strip" width="143.5" height="161"/>
     </resources>
 </document>
