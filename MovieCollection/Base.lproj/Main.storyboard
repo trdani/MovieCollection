@@ -16,8 +16,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="film_back" translatesAutoresizingMaskIntoConstraints="NO" id="QXB-Zr-Bif">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="325"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="movie_display_reel" translatesAutoresizingMaskIntoConstraints="NO" id="QXB-Zr-Bif">
+                                <rect key="frame" x="0.0" y="60" width="414" height="300"/>
                             </imageView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Ge-6v-PO6">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
@@ -50,40 +50,40 @@
                                 </items>
                             </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="nGL-h3-eHv">
-                                <rect key="frame" x="30" y="160" width="354" height="150"/>
+                                <rect key="frame" x="40" y="130" width="324" height="175"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="150" id="DJ5-CQ-pPV"/>
+                                    <constraint firstAttribute="height" constant="175" id="DJ5-CQ-pPV"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="40"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="40"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="bottom" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="bUT-6g-8fz" userLabel="Labels Stack View">
-                                <rect key="frame" x="20" y="330" width="99" height="458"/>
+                                <rect key="frame" x="20" y="380" width="99" height="408"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="year" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xaJ-YG-0gN">
-                                        <rect key="frame" x="0.0" y="0.0" width="99" height="99.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="99" height="87"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="director" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QOs-bS-t0H">
-                                        <rect key="frame" x="0.0" y="119.5" width="99" height="99.5"/>
+                                        <rect key="frame" x="0.0" y="107" width="99" height="87"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="genre" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dJO-XU-y6B">
-                                        <rect key="frame" x="0.0" y="239" width="99" height="99.5"/>
+                                        <rect key="frame" x="0.0" y="214" width="99" height="87"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="comments" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ue3-AW-UU2">
-                                        <rect key="frame" x="0.0" y="358.5" width="99" height="99.5"/>
+                                        <rect key="frame" x="0.0" y="321" width="99" height="87"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -99,31 +99,31 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="kaF-ie-pkr" userLabel="Movie Stats Stack View">
-                                <rect key="frame" x="134" y="330" width="250" height="458"/>
+                                <rect key="frame" x="134" y="380" width="250" height="408"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2001" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YMw-0k-Xz3">
-                                        <rect key="frame" x="0.0" y="0.0" width="250" height="99.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="250" height="87"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="trisha dani" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FHo-rg-IPe">
-                                        <rect key="frame" x="0.0" y="119.5" width="250" height="99.5"/>
+                                        <rect key="frame" x="0.0" y="107" width="250" height="87"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="science fiction" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PiY-pi-9IX">
-                                        <rect key="frame" x="0.0" y="239" width="250" height="99.5"/>
+                                        <rect key="frame" x="0.0" y="214" width="250" height="87"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="enter any comments about the movie" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zJx-jS-yJb">
-                                        <rect key="frame" x="0.0" y="358.5" width="250" height="99.5"/>
-                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <rect key="frame" x="0.0" y="321" width="250" height="87"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -143,32 +143,32 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="xgu-R1-wVx" firstAttribute="bottom" secondItem="kaF-ie-pkr" secondAttribute="bottom" constant="20" id="4s8-ox-hRd"/>
+                            <constraint firstItem="QXB-Zr-Bif" firstAttribute="top" secondItem="6Ge-6v-PO6" secondAttribute="bottom" id="570-le-dWA"/>
                             <constraint firstItem="6Ge-6v-PO6" firstAttribute="leading" secondItem="xgu-R1-wVx" secondAttribute="leading" id="6hl-m6-JLv"/>
                             <constraint firstItem="xgu-R1-wVx" firstAttribute="bottom" secondItem="bUT-6g-8fz" secondAttribute="bottom" constant="20" id="8ac-SH-1eO"/>
-                            <constraint firstItem="nGL-h3-eHv" firstAttribute="leading" secondItem="xgu-R1-wVx" secondAttribute="leading" constant="30" id="8xG-yp-mW3"/>
-                            <constraint firstItem="QXB-Zr-Bif" firstAttribute="top" secondItem="xgu-R1-wVx" secondAttribute="top" id="AFh-GP-02o"/>
-                            <constraint firstItem="bUT-6g-8fz" firstAttribute="top" secondItem="nGL-h3-eHv" secondAttribute="bottom" constant="20" id="Dbh-Iq-RLV"/>
+                            <constraint firstItem="nGL-h3-eHv" firstAttribute="leading" secondItem="xgu-R1-wVx" secondAttribute="leading" constant="40" id="8xG-yp-mW3"/>
+                            <constraint firstItem="bUT-6g-8fz" firstAttribute="top" secondItem="nGL-h3-eHv" secondAttribute="bottom" constant="75" id="Dbh-Iq-RLV"/>
                             <constraint firstItem="QXB-Zr-Bif" firstAttribute="leading" secondItem="xgu-R1-wVx" secondAttribute="leading" id="DcW-83-F2l"/>
-                            <constraint firstItem="nGL-h3-eHv" firstAttribute="top" secondItem="6Ge-6v-PO6" secondAttribute="bottom" constant="100" id="GIg-TM-fZZ"/>
+                            <constraint firstItem="nGL-h3-eHv" firstAttribute="top" secondItem="6Ge-6v-PO6" secondAttribute="bottom" constant="70" id="GIg-TM-fZZ"/>
                             <constraint firstItem="kaF-ie-pkr" firstAttribute="height" secondItem="bUT-6g-8fz" secondAttribute="height" id="N8j-KQ-0G9"/>
                             <constraint firstItem="xgu-R1-wVx" firstAttribute="trailing" secondItem="kaF-ie-pkr" secondAttribute="trailing" constant="30" id="NWt-z4-oaS"/>
-                            <constraint firstItem="xgu-R1-wVx" firstAttribute="trailing" secondItem="nGL-h3-eHv" secondAttribute="trailing" constant="30" id="R39-oP-uhH"/>
+                            <constraint firstItem="xgu-R1-wVx" firstAttribute="trailing" secondItem="nGL-h3-eHv" secondAttribute="trailing" constant="50" id="R39-oP-uhH"/>
                             <constraint firstItem="kaF-ie-pkr" firstAttribute="leading" secondItem="bUT-6g-8fz" secondAttribute="trailing" constant="15" id="dwU-Vj-9cZ"/>
-                            <constraint firstItem="bUT-6g-8fz" firstAttribute="top" secondItem="QXB-Zr-Bif" secondAttribute="bottom" constant="5" id="eUp-7n-aVz"/>
-                            <constraint firstItem="kaF-ie-pkr" firstAttribute="top" secondItem="QXB-Zr-Bif" secondAttribute="bottom" constant="5" id="eYD-6K-CHo"/>
+                            <constraint firstItem="bUT-6g-8fz" firstAttribute="top" secondItem="QXB-Zr-Bif" secondAttribute="bottom" constant="20" id="eUp-7n-aVz"/>
+                            <constraint firstItem="kaF-ie-pkr" firstAttribute="top" secondItem="QXB-Zr-Bif" secondAttribute="bottom" constant="20" id="eYD-6K-CHo"/>
                             <constraint firstItem="6Ge-6v-PO6" firstAttribute="trailing" secondItem="xgu-R1-wVx" secondAttribute="trailing" id="fOC-VI-7t6"/>
                             <constraint firstItem="bUT-6g-8fz" firstAttribute="leading" secondItem="xgu-R1-wVx" secondAttribute="leading" constant="20" id="hrr-Lz-Kac"/>
-                            <constraint firstItem="kaF-ie-pkr" firstAttribute="top" secondItem="nGL-h3-eHv" secondAttribute="bottom" constant="20" id="jzc-x4-bpr"/>
+                            <constraint firstItem="kaF-ie-pkr" firstAttribute="top" secondItem="nGL-h3-eHv" secondAttribute="bottom" constant="75" id="jzc-x4-bpr"/>
                             <constraint firstItem="xgu-R1-wVx" firstAttribute="trailing" secondItem="QXB-Zr-Bif" secondAttribute="trailing" id="vdL-Vr-EVb"/>
                             <constraint firstItem="6Ge-6v-PO6" firstAttribute="top" secondItem="xgu-R1-wVx" secondAttribute="top" id="wS2-LB-GEE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="xgu-R1-wVx"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="firstColor">
-                                <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="value" red="1" green="0.91238620020000005" blue="0.64388349680000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="color" keyPath="secondColor">
-                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="value" red="0.97523480650000005" green="0.74959605929999995" blue="0.19705367090000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="isHorizontal" value="NO"/>
                         </userDefinedRuntimeAttributes>
@@ -188,7 +188,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pEt-BM-iNe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="x59-1i-EXl" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="24.637681159420293" y="229.6875"/>
+            <point key="canvasLocation" x="433" y="321"/>
         </scene>
         <!--My Movies-->
         <scene sceneID="tne-QT-ifu">
@@ -231,7 +231,7 @@
                                                         <action selector="takeToMovieInfoDisplay:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AOJ-RT-fqh"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Name (2020)" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" preferredMaxLayoutWidth="120" translatesAutoresizingMaskIntoConstraints="NO" id="E4m-tO-V1X">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Name (2020)" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" adjustsFontForContentSizeCategory="YES" preferredMaxLayoutWidth="120" translatesAutoresizingMaskIntoConstraints="NO" id="E4m-tO-V1X">
                                                     <rect key="frame" x="32.5" y="62" width="105" height="100"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="100" id="2wm-NH-LDW"/>
@@ -270,10 +270,10 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="firstColor">
-                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="value" red="1" green="0.91238620020000005" blue="0.64388349680000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="color" keyPath="secondColor">
-                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="value" red="0.97523480650000005" green="0.74959605929999995" blue="0.19705367090000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="isHorizontal" value="NO"/>
                         </userDefinedRuntimeAttributes>
@@ -333,31 +333,31 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="movie name" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VwC-tI-nNg" userLabel="movie name">
                                         <rect key="frame" x="0.0" y="0.0" width="109" height="125.5"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="year" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5t6-68-uan">
                                         <rect key="frame" x="0.0" y="145.5" width="109" height="125.5"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="director" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5fC-cp-ai7">
                                         <rect key="frame" x="0.0" y="291" width="109" height="126"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="genre" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hjk-5X-fOv">
                                         <rect key="frame" x="0.0" y="437" width="109" height="125.5"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="comments" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mtg-wd-DhU">
                                         <rect key="frame" x="0.0" y="582.5" width="109" height="125.5"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -371,7 +371,7 @@
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bouncesZoom="NO" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="WIm-iT-f0a">
                                         <rect key="frame" x="0.0" y="0.0" width="225" height="125.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                         <dataDetectorType key="dataDetectorTypes" link="YES"/>
@@ -379,7 +379,7 @@
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bouncesZoom="NO" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="UlX-Qo-FUC">
                                         <rect key="frame" x="0.0" y="145.5" width="225" height="125.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="numberPad" returnKeyType="done"/>
                                         <dataDetectorType key="dataDetectorTypes" link="YES"/>
@@ -387,7 +387,7 @@
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bouncesZoom="NO" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="zeH-km-eZA">
                                         <rect key="frame" x="0.0" y="291" width="225" height="126"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
                                         <dataDetectorType key="dataDetectorTypes" link="YES"/>
@@ -395,7 +395,7 @@
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bouncesZoom="NO" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="7dE-Au-5pn">
                                         <rect key="frame" x="0.0" y="437" width="225" height="125.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
                                         <dataDetectorType key="dataDetectorTypes" link="YES"/>
@@ -403,7 +403,7 @@
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bouncesZoom="NO" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="gtF-Qa-piF">
                                         <rect key="frame" x="0.0" y="582.5" width="225" height="125.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                                         <dataDetectorType key="dataDetectorTypes" link="YES"/>
@@ -442,10 +442,10 @@
                         <viewLayoutGuide key="safeArea" id="evp-47-cOr"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="firstColor">
-                                <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="value" red="1" green="0.91238620020000005" blue="0.64388349680000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="color" keyPath="secondColor">
-                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="value" red="0.97523480650000005" green="0.74959605929999995" blue="0.19705367090000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="isHorizontal" value="NO"/>
                         </userDefinedRuntimeAttributes>
@@ -495,10 +495,10 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="MXg-M2-OMZ"/>
+        <segue reference="52a-tv-KEg"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="film_back" width="303" height="202"/>
         <image name="film_strip" width="542" height="646"/>
+        <image name="movie_display_reel" width="166.5" height="145"/>
     </resources>
 </document>
